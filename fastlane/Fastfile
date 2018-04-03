@@ -1,0 +1,8 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Create App Icons"
+  lane :app_icons do
+    appicon(appicon_devices: [:ipad, :iphone, :ios_marketing], appicon_path: 'LoginCritter/Resources/Assets.xcassets')
+  end
+end

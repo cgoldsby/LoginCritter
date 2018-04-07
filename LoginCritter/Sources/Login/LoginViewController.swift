@@ -113,6 +113,6 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func dev_activeAnimationSliderValueChanged(sender: UISlider) {
-        print(sender.value)
+        critterView.headRotationProgress(fractionComplete: sender.value)
     }
 }

@@ -79,6 +79,7 @@ final class CritterView: UIView {
     // MARK: - Animation
 
     private var muzzleFocusAnimation: UIViewPropertyAnimator!
+    private var activeFullAnimation: UIViewPropertyAnimator!
 
     func startFocusAnimations() {
         focusAnimations()
@@ -87,6 +88,8 @@ final class CritterView: UIView {
 
     func neutralAnimation() {
         muzzleFocusAnimation.stopAnimation(true)
+        activeFullAnimation.stopAnimation(true)
+
         let neutralAnimation = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
             self.head.layer.transform = .identity
             self.leftEye.layer.transform = .identity
@@ -135,7 +138,21 @@ final class CritterView: UIView {
     }
 
     func startActiveFullAnimation() {
-        let activeFullAnimation = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
+        createActiveFullAnimation()
+        activeFullAnimation.startAnimation()
+    }
+
+    func headRotationProgress(fractionComplete: Float) {
+        if activeFullAnimation == nil {
+            createActiveFullAnimation()
+            muzzleFocusAnimation.stopAnimation(true)
+        }
+
+        activeFullAnimation.fractionComplete = CGFloat(fractionComplete)
+    }
+
+    private func createActiveFullAnimation() {
+        activeFullAnimation = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
             let headTransform = CATransform3D
                 .identity
                 .perspective(-1.0 / 500)
@@ -199,7 +216,6 @@ final class CritterView: UIView {
                 .translate(.x, by: -(p2.x - p1.x))
                 .translate(.y, by: p2.y - p1.y)
         }
-        activeFullAnimation.startAnimation()
     }
 
     private func focusAnimations() {

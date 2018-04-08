@@ -67,7 +67,7 @@ final class CritterView: UIView {
         muzzle.addSubview(mouthOpen)
         mouthOpen.frame = CGRect(x: 15.5, y: 24.6, width: 26.4, height: 18.7)
 
-        focusAnimations()
+        setUpHeadRotatedLeftAnimation()
     }
 
     private func setUpMask() {
@@ -78,16 +78,16 @@ final class CritterView: UIView {
 
     // MARK: - Animation
 
-    private var muzzleFocusAnimation: UIViewPropertyAnimator!
+    private var headRotatedLeftAnimation: UIViewPropertyAnimator!
     private var activeFullAnimation: UIViewPropertyAnimator!
 
     func startFocusAnimations() {
-        focusAnimations()
-        muzzleFocusAnimation.startAnimation()
+        setUpHeadRotatedLeftAnimation()
+        headRotatedLeftAnimation.startAnimation()
     }
 
     func neutralAnimation() {
-        muzzleFocusAnimation.stopAnimation(true)
+        headRotatedLeftAnimation.stopAnimation(true)
         activeFullAnimation.stopAnimation(true)
 
         let neutralAnimation = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
@@ -145,7 +145,7 @@ final class CritterView: UIView {
     func headRotationProgress(fractionComplete: Float) {
         if activeFullAnimation == nil {
             createActiveFullAnimation()
-            muzzleFocusAnimation.stopAnimation(true)
+            headRotatedLeftAnimation.stopAnimation(true)
         }
 
         activeFullAnimation.fractionComplete = CGFloat(fractionComplete)
@@ -218,8 +218,8 @@ final class CritterView: UIView {
         }
     }
 
-    private func focusAnimations() {
-        muzzleFocusAnimation = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
+    private func setUpHeadRotatedLeftAnimation() {
+        headRotatedLeftAnimation = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
             let headTransform = CATransform3D
                 .identity
                 .perspective(-1.0 / 500)

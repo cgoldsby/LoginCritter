@@ -92,12 +92,12 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func dev_activeAnimation() {
-        critterView.startFocusAnimations()
+        critterView.focusCritter(fractionComplete: activeAnimationSlider.value)
         activeAnimationSlider.isEnabled = true
     }
 
     @objc private func dev_neutralAnimation() {
-        critterView.neutralAnimation()
+        critterView.unfocusCritter()
         activeAnimationSlider.isEnabled = false
         UIView.animate(withDuration: 0.2) {
             self.activeAnimationSlider.setValue(0, animated: true)
@@ -113,6 +113,6 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func dev_activeAnimationSliderValueChanged(sender: UISlider) {
-        critterView.headRotationProgress(fractionComplete: sender.value)
+        critterView.focusCriterFactionCompleteDidChange(fractionComplete: sender.value)
     }
 }

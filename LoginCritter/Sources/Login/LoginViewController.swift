@@ -61,11 +61,6 @@ final class LoginViewController: UIViewController {
         validateButton.setTitleColor(.white, for: .normal)
         validateButton.addTarget(self, action: #selector(dev_ecstaticAnimation), for: .touchUpInside)
 
-        let animateFullButton = UIButton(type: .system)
-        animateFullButton.setTitle("Activate Full", for: .normal)
-        animateFullButton.setTitleColor(.white, for: .normal)
-        animateFullButton.addTarget(self, action: #selector(dev_activeFullAnimation), for: .touchUpInside)
-
         activeAnimationSlider.tintColor = Colors.light
         activeAnimationSlider.isEnabled = false
         activeAnimationSlider.addTarget(self, action: #selector(dev_activeAnimationSliderValueChanged(sender:)), for: .valueChanged)
@@ -74,7 +69,6 @@ final class LoginViewController: UIViewController {
             arrangedSubviews:
             [
                 animateButton,
-                animateFullButton,
                 resetButton,
                 validateButton,
                 activeAnimationSlider
@@ -92,27 +86,20 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func dev_activeAnimation() {
-        critterView.focusCritter(fractionComplete: activeAnimationSlider.value)
+        critterView.startHeadRotation(startAt: activeAnimationSlider.value)
         activeAnimationSlider.isEnabled = true
     }
 
     @objc private func dev_neutralAnimation() {
-        critterView.unfocusCritter()
+        critterView.stopHeadRotation()
         activeAnimationSlider.isEnabled = false
-        UIView.animate(withDuration: 0.2) {
-            self.activeAnimationSlider.setValue(0, animated: true)
-        }
     }
 
     @objc private func dev_ecstaticAnimation() {
         critterView.validateAnimation()
     }
 
-    @objc private func dev_activeFullAnimation() {
-        critterView.startActiveFullAnimation()
-    }
-
     @objc private func dev_activeAnimationSliderValueChanged(sender: UISlider) {
-        critterView.focusCriterFactionCompleteDidChange(fractionComplete: sender.value)
+        critterView.updateHeadRotation(to: sender.value)
     }
 }

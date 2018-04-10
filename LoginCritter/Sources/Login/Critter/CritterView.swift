@@ -77,14 +77,15 @@ final class CritterView: UIView {
     // MARK: - Animation
 
     private enum Parts {
+        case body
         case head
-        case leftEye
-        case rightEye
         case leftEar
-        case rightEar
+        case leftEye
+        case mouthOpen
         case muzzle
         case nose
-        case mouthOpen
+        case rightEar
+        case rightEye
     }
 
     private var focusCritterStartAnimation: UIViewPropertyAnimator?
@@ -134,6 +135,7 @@ final class CritterView: UIView {
         }
 
         let neutralAnimation = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
+            self.body.layer.transform = .identity
             self.head.layer.transform = .identity
             self.leftEye.layer.transform = .identity
             self.rightEye.layer.transform = .identity
@@ -189,6 +191,12 @@ final class CritterView: UIView {
     }
 
     private func focusCritterFinalState() {
+        let bodyTransform = CATransform3D
+            .identity
+            .perspective(-1.0 / 500)
+            .rotate(.y, by: (10.0).degrees)
+        body.layer.transform = bodyTransform
+
         let headTransform = CATransform3D
             .identity
             .perspective(-1.0 / 500)
@@ -254,6 +262,12 @@ final class CritterView: UIView {
     }
 
     private func focusCritterInitialState() {
+        let bodyTransform = CATransform3D
+            .identity
+            .perspective(-1.0 / 500)
+            .rotate(.y, by: (-10.0).degrees)
+        body.layer.transform = bodyTransform
+
         let headTransform = CATransform3D
             .identity
             .perspective(-1.0 / 500)
@@ -318,6 +332,7 @@ final class CritterView: UIView {
     }
 
     func storeCurrentState() {
+        focusIntermediateState[.body] = body.layer.transform
         focusIntermediateState[.head] = head.layer.transform
         focusIntermediateState[.leftEye] = leftEye.layer.transform
         focusIntermediateState[.rightEye] = rightEye.layer.transform
@@ -329,6 +344,7 @@ final class CritterView: UIView {
     }
 
     func restoreState() {
+        body.layer.transform = focusIntermediateState[.body]!
         head.layer.transform = focusIntermediateState[.head]!
         leftEye.layer.transform = focusIntermediateState[.leftEye]!
         rightEye.layer.transform = focusIntermediateState[.rightEye]!

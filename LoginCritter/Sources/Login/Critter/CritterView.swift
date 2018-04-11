@@ -42,11 +42,9 @@ final class CritterView: UIView {
         body.frame = CGRect(x: 33.9, y: 109.2, width: 92.1, height: 73.4)
 
         addSubview(leftEar)
-        leftEar.layer.zPosition = -30
         leftEar.frame = CGRect(x: 20.1, y: 48.8, width: 36.7, height: 36.3)
 
         addSubview(rightEar)
-        rightEar.layer.zPosition = -30
         rightEar.frame = CGRect(x: 107.1, y: 48.8, width: 36.7, height: 36.3)
 
         addSubview(head)
@@ -146,12 +144,6 @@ final class CritterView: UIView {
             self.mouthOpen.layer.transform = .identity
         }
 
-        neutralAnimation.addCompletion {
-            _ in
-            self.leftEar.layer.zPosition = -30
-            self.rightEar.layer.zPosition = -30
-        }
-
         neutralAnimation.startAnimation()
     }
 
@@ -228,13 +220,11 @@ final class CritterView: UIView {
 
         rightEar.layer.transform = headTransform
             .translate(.x, by: -10)
-        rightEar.layer.zPosition = -30
 
         leftEar.layer.transform = headTransform
             .translate(.x, by: 2)
             .translate(.y, by: 12)
             .rotate(.z, by: (-8.0).degrees)
-        leftEar.layer.zPosition = 30
 
         p1 = CGPoint(x: 24, y: 43)
         p2 = CGPoint(x: 12.9, y: 45.1)
@@ -298,13 +288,11 @@ final class CritterView: UIView {
 
         leftEar.layer.transform = headTransform
             .translate(.x, by: 10)
-        leftEar.layer.zPosition = -30
 
         rightEar.layer.transform = headTransform
             .translate(.x, by: -2)
             .translate(.y, by: 12)
             .rotate(.z, by: 8.0.degrees)
-        rightEar.layer.zPosition = 30
 
         p1 = CGPoint(x: 24, y: 43)
         p2 = CGPoint(x: 12.9, y: 45.1)

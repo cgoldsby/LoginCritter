@@ -17,7 +17,9 @@ extension UIImage {
         static let eye = #imageLiteral(resourceName: "Eye")
         static let head = #imageLiteral(resourceName: "Head")
         static let leftEar = #imageLiteral(resourceName: "Ear")
+        static let mouthClosed = #imageLiteral(resourceName: "Mouth-closed")
         static let mouthFull = #imageLiteral(resourceName: "Mouth-full")
+        static let mouthHalf = #imageLiteral(resourceName: "Mouth-half")
         static let muzzle = #imageLiteral(resourceName: "Muzzle")
         static let nose = #imageLiteral(resourceName: "Nose")
         static let rightEar: UIImage = {

@@ -9,7 +9,11 @@
 import UIKit
 
 final class Mouth: UIImageView, CritterAnimatable {
-    
+
+    var isEcstatic = false
+
+    private var isActive = false
+
     convenience init() {
         self.init(image: UIImage.Critter.mouthClosed)
         frame = CGRect(x: 15.6, y: 27, width: 26.6, height: 7.3)
@@ -23,20 +27,20 @@ final class Mouth: UIImageView, CritterAnimatable {
 
         return {
             self.layer.transform = currentState
-            self.layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
-            self.layer.contents = UIImage.Critter.mouthHalf.cgImage
+            self.isActive = true
+            self.applyEcstaticState()
         }
     }
 
     func applyInactiveState() {
         layer.transform = .identity
 
-        layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 7.3)
-        layer.contents = UIImage.Critter.mouthClosed.cgImage
+        isActive = false
+        applyEcstaticState()
     }
     
     func applyActiveStartState() {
-        let p1 = CGPoint(x: 15.5, y: 24.6)
+        let p1 = CGPoint(x: 15.6, y: 24.6)
         let p2 = CGPoint(x: 14.9, y: 22.1)
         
         layer.transform = CATransform3D
@@ -44,17 +48,32 @@ final class Mouth: UIImageView, CritterAnimatable {
             .translate(.x, by: p2.x - p1.x)
             .translate(.y, by: p2.y - p1.y)
 
-        layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
-        layer.contents = UIImage.Critter.mouthHalf.cgImage
+        isActive = true
+        applyEcstaticState()
     }
     
     func applyActiveEndState() {
-        let p1 = CGPoint(x: 15.5, y: 24.6)
+        let p1 = CGPoint(x: 15.6, y: 24.6)
         let p2 = CGPoint(x: 14.9, y: 22.1)
         
         layer.transform = CATransform3D
             .identity
             .translate(.x, by: -(p2.x - p1.x))
             .translate(.y, by: p2.y - p1.y)
+    }
+
+    func applyEcstaticState() {
+        if isEcstatic {
+            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 18.7)
+            layer.contents = UIImage.Critter.mouthFull.cgImage
+        }
+        else if isActive {
+            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
+            layer.contents = UIImage.Critter.mouthHalf.cgImage
+        }
+        else {
+            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 7.3)
+            layer.contents = UIImage.Critter.mouthClosed.cgImage
+        }
     }
 }

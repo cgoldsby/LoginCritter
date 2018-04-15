@@ -36,7 +36,12 @@ final class CritterView: UIView {
                 self.mouth]
     }()
 
-    private var isEcstatic = false
+    private var isEcstatic = false {
+
+        didSet {
+            mouth.isEcstatic = isEcstatic
+        }
+    }
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -148,6 +153,7 @@ final class CritterView: UIView {
         let validateAnimation = UIViewPropertyAnimator(duration: duration, curve: .easeIn) {
             self.leftEye.layer.bounds = CGRect(x: 0, y: 0, width: dimension, height: dimension)
             self.rightEye.layer.bounds = CGRect(x: 0, y: 0, width: dimension, height: dimension)
+            self.mouth.applyEcstaticState()
         }
 
         validateAnimation.startAnimation()

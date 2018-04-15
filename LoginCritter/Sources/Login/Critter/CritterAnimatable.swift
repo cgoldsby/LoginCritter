@@ -8,8 +8,10 @@
 
 import UIKit
 
+typealias SavedState = () -> Void
+
 protocol CritterAnimatable {
-    var currentState: CATransform3D { get }
+    func currentState() -> SavedState
     func applyActiveStartState()
     func applyActiveEndState()
     func applyInactiveState()
@@ -17,8 +19,11 @@ protocol CritterAnimatable {
 
 extension CritterAnimatable where Self: UIView {
     
-    var currentState: CATransform3D {
-        return layer.transform
+    func currentState() -> SavedState {
+        let currentState = layer.transform
+        return {
+            self.layer.transform = currentState
+        }
     }
     
     func applyInactiveState() {

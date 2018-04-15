@@ -24,6 +24,20 @@ final class CritterView: UIView {
     private let rightEarMask = RightEarMask()
     private let rightEye = RightEye()
 
+    private lazy var parts: [CritterAnimatable] = {
+        return [self.body,
+                self.head,
+                self.leftEar,
+                self.rightEar,
+                self.leftEarMask,
+                self.rightEarMask,
+                self.leftEye,
+                self.rightEye,
+                self.muzzle,
+                self.nose,
+                self.mouthOpen]
+    }()
+
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         setUpView()
@@ -119,17 +133,7 @@ final class CritterView: UIView {
         }
 
         let neutralAnimation = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
-            [self.body,
-             self.head,
-             self.leftEar,
-             self.rightEar,
-             self.leftEarMask,
-             self.rightEarMask,
-             self.leftEye,
-             self.rightEye,
-             self.muzzle,
-             self.nose,
-             self.mouthOpen].applyInactiveState()
+            self.parts.applyInactiveState()
         }
 
         neutralAnimation.startAnimation()
@@ -171,30 +175,11 @@ final class CritterView: UIView {
     }
 
     private func focusCritterInitialState() {
-        [body,
-         head,
-         leftEar,
-         rightEar,
-         leftEarMask,
-         rightEarMask,
-         leftEye,
-         rightEye,
-         muzzle,
-         nose,
-         mouthOpen].applyActiveStartState()
+        parts.applyActiveStartState()
     }
 
     private func focusCritterFinalState() {
-        [body,
-         head,
-         leftEar,
-         rightEar,
-         leftEarMask,
-         rightEarMask,
-         leftEye,
-         rightEye,
-         muzzle,
-         nose].applyActiveEndState()
+        parts.applyActiveEndState()
     }
 
     func storeCurrentState() {

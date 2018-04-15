@@ -16,6 +16,7 @@
 		EB26A6882083AF5200E5D440 /* RightEar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A6872083AF5200E5D440 /* RightEar.swift */; };
 		EB26A68A2083B12B00E5D440 /* LeftEarMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A6892083B12B00E5D440 /* LeftEarMask.swift */; };
 		EB26A68C2083B42100E5D440 /* RightEarMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A68B2083B42100E5D440 /* RightEarMask.swift */; };
+		EB26A68E2083B5B200E5D440 /* LeftEye.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A68D2083B5B200E5D440 /* LeftEye.swift */; };
 		EB7A27352073A4EE00C38FFF /* CATransform3D+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */; };
 		EBBA760C206E6F020018CD99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760B206E6F020018CD99 /* AppDelegate.swift */; };
 		EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760D206E6F020018CD99 /* LoginViewController.swift */; };
@@ -36,6 +37,7 @@
 		EB26A6872083AF5200E5D440 /* RightEar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightEar.swift; sourceTree = "<group>"; };
 		EB26A6892083B12B00E5D440 /* LeftEarMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEarMask.swift; sourceTree = "<group>"; };
 		EB26A68B2083B42100E5D440 /* RightEarMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightEarMask.swift; sourceTree = "<group>"; };
+		EB26A68D2083B5B200E5D440 /* LeftEye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEye.swift; sourceTree = "<group>"; };
 		EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransform3D+Helper.swift"; sourceTree = "<group>"; };
 		EBBA7608206E6F020018CD99 /* Login Critter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Login Critter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBA760B206E6F020018CD99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				EB26A6832083A53100E5D440 /* Head.swift */,
 				EB26A6852083ABE700E5D440 /* LeftEar.swift */,
 				EB26A6892083B12B00E5D440 /* LeftEarMask.swift */,
+				EB26A68D2083B5B200E5D440 /* LeftEye.swift */,
 				EB26A6872083AF5200E5D440 /* RightEar.swift */,
 				EB26A68B2083B42100E5D440 /* RightEarMask.swift */,
 			);
@@ -225,6 +228,7 @@
 				EBBA7620206E6FDE0018CD99 /* Colors.swift in Sources */,
 				EB26A67B2083734700E5D440 /* Part.swift in Sources */,
 				EB26A67E2083801100E5D440 /* Body.swift in Sources */,
+				EB26A68E2083B5B200E5D440 /* LeftEye.swift in Sources */,
 				EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */,
 				EB26A68A2083B12B00E5D440 /* LeftEarMask.swift in Sources */,
 				EBBA760C206E6F020018CD99 /* AppDelegate.swift in Sources */,

@@ -16,7 +16,7 @@ final class CritterView: UIView {
     private let head = Head()
     private let leftEar = LeftEar()
     private let leftEarMask = LeftEarMask()
-    private let leftEye = UIImageView(image: UIImage.Critter.eye)
+    private let leftEye = LeftEye()
     private let mouthOpen = UIImageView(image: UIImage.Critter.mouthOpen)
     private let muzzle = UIImageView(image: UIImage.Critter.muzzle)
     private let nose = UIImageView(image: UIImage.Critter.nose)
@@ -45,7 +45,6 @@ final class CritterView: UIView {
         head.addSubview(rightEarMask)
 
         head.addSubview(leftEye)
-        leftEye.frame = CGRect(x: 21.8, y: 28.8, width: 11.7, height: 11.7)
 
         head.addSubview(rightEye)
         rightEye.frame = CGRect(x: 72.4, y: 28.8, width: 11.7, height: 11.7)
@@ -134,10 +133,9 @@ final class CritterView: UIView {
              self.leftEar,
              self.rightEar,
              self.leftEarMask,
-             self.rightEarMask
-                ].applyInactiveState()
+             self.rightEarMask,
+             self.leftEye].applyInactiveState()
 
-            self.leftEye.layer.transform = .identity
             self.mouthOpen.layer.transform = .identity
             self.muzzle.layer.transform = .identity
             self.nose.layer.transform = .identity
@@ -188,7 +186,8 @@ final class CritterView: UIView {
          leftEar,
          rightEar,
          leftEarMask,
-         rightEarMask].applyActiveStartState()
+         rightEarMask,
+         leftEye].applyActiveStartState()
 
         let eyeScale: CGFloat = 1.12
         let eyeTransform = CATransform3D
@@ -242,7 +241,8 @@ final class CritterView: UIView {
          leftEar,
          rightEar,
          leftEarMask,
-         rightEarMask].applyActiveEndState()
+         rightEarMask,
+         leftEye].applyActiveEndState()
 
         let eyeScale: CGFloat = 1.12
         let eyeTransform = CATransform3D
@@ -295,7 +295,7 @@ final class CritterView: UIView {
         focusIntermediateState[.head] = head.currentState
         focusIntermediateState[.leftEarMask] = leftEarMask.currentState
         focusIntermediateState[.leftEar] = leftEar.currentState
-        focusIntermediateState[.leftEye] = leftEye.layer.transform
+        focusIntermediateState[.leftEye] = leftEye.currentState
         focusIntermediateState[.mouthOpen] = mouthOpen.layer.transform
         focusIntermediateState[.muzzle] = muzzle.layer.transform
         focusIntermediateState[.nose] = nose.layer.transform

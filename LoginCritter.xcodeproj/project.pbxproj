@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB26A67B2083734700E5D440 /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A67A2083734700E5D440 /* Part.swift */; };
 		EB26A67E2083801100E5D440 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A67D2083801100E5D440 /* Body.swift */; };
 		EB26A6802083805D00E5D440 /* CritterAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */; };
 		EB26A6822083A3F900E5D440 /* Degree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A6812083A3F900E5D440 /* Degree.swift */; };
@@ -17,6 +16,7 @@
 		EB26A68A2083B12B00E5D440 /* LeftEarMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A6892083B12B00E5D440 /* LeftEarMask.swift */; };
 		EB26A68C2083B42100E5D440 /* RightEarMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A68B2083B42100E5D440 /* RightEarMask.swift */; };
 		EB26A68E2083B5B200E5D440 /* LeftEye.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A68D2083B5B200E5D440 /* LeftEye.swift */; };
+		EB26A6902083B82700E5D440 /* RightEye.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A68F2083B82700E5D440 /* RightEye.swift */; };
 		EB7A27352073A4EE00C38FFF /* CATransform3D+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */; };
 		EBBA760C206E6F020018CD99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760B206E6F020018CD99 /* AppDelegate.swift */; };
 		EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760D206E6F020018CD99 /* LoginViewController.swift */; };
@@ -28,7 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EB26A67A2083734700E5D440 /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
 		EB26A67D2083801100E5D440 /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
 		EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CritterAnimatable.swift; sourceTree = "<group>"; };
 		EB26A6812083A3F900E5D440 /* Degree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Degree.swift; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		EB26A6892083B12B00E5D440 /* LeftEarMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEarMask.swift; sourceTree = "<group>"; };
 		EB26A68B2083B42100E5D440 /* RightEarMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightEarMask.swift; sourceTree = "<group>"; };
 		EB26A68D2083B5B200E5D440 /* LeftEye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEye.swift; sourceTree = "<group>"; };
+		EB26A68F2083B82700E5D440 /* RightEye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightEye.swift; sourceTree = "<group>"; };
 		EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransform3D+Helper.swift"; sourceTree = "<group>"; };
 		EBBA7608206E6F020018CD99 /* Login Critter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Login Critter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBA760B206E6F020018CD99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +71,7 @@
 				EB26A68D2083B5B200E5D440 /* LeftEye.swift */,
 				EB26A6872083AF5200E5D440 /* RightEar.swift */,
 				EB26A68B2083B42100E5D440 /* RightEarMask.swift */,
+				EB26A68F2083B82700E5D440 /* RightEye.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -90,7 +91,6 @@
 			children = (
 				EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */,
 				EB26A67C20837FE300E5D440 /* Parts */,
-				EB26A67A2083734700E5D440 /* Part.swift */,
 				EBDC9182206E7F8C00F95959 /* CritterAssets.swift */,
 				EBBA7623206E73480018CD99 /* CritterView.swift */,
 			);
@@ -226,7 +226,7 @@
 				EB26A6822083A3F900E5D440 /* Degree.swift in Sources */,
 				EBBA7624206E73480018CD99 /* CritterView.swift in Sources */,
 				EBBA7620206E6FDE0018CD99 /* Colors.swift in Sources */,
-				EB26A67B2083734700E5D440 /* Part.swift in Sources */,
+				EB26A6902083B82700E5D440 /* RightEye.swift in Sources */,
 				EB26A67E2083801100E5D440 /* Body.swift in Sources */,
 				EB26A68E2083B5B200E5D440 /* LeftEye.swift in Sources */,
 				EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */,

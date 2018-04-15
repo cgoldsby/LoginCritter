@@ -22,7 +22,7 @@ final class CritterView: UIView {
     private let nose = UIImageView(image: UIImage.Critter.nose)
     private let rightEar = RightEar()
     private let rightEarMask = RightEarMask()
-    private let rightEye = UIImageView(image: UIImage.Critter.eye)
+    private let rightEye = RightEye()
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -45,9 +45,7 @@ final class CritterView: UIView {
         head.addSubview(rightEarMask)
 
         head.addSubview(leftEye)
-
         head.addSubview(rightEye)
-        rightEye.frame = CGRect(x: 72.4, y: 28.8, width: 11.7, height: 11.7)
 
         head.addSubview(muzzle)
         muzzle.frame = CGRect(x: 24, y: 43, width: 57.5, height: 46.8)
@@ -134,12 +132,12 @@ final class CritterView: UIView {
              self.rightEar,
              self.leftEarMask,
              self.rightEarMask,
-             self.leftEye].applyInactiveState()
+             self.leftEye,
+             self.rightEye].applyInactiveState()
 
             self.mouthOpen.layer.transform = .identity
             self.muzzle.layer.transform = .identity
             self.nose.layer.transform = .identity
-            self.rightEye.layer.transform = .identity
         }
 
         neutralAnimation.startAnimation()
@@ -187,31 +185,11 @@ final class CritterView: UIView {
          rightEar,
          leftEarMask,
          rightEarMask,
-         leftEye].applyActiveStartState()
+         leftEye,
+         rightEye].applyActiveStartState()
 
-        let eyeScale: CGFloat = 1.12
-        let eyeTransform = CATransform3D
-            .identity
-            .scale(.x, by: eyeScale)
-            .scale(.y, by: eyeScale)
-            .scale(.z, by: 1.01) // 🎩✨ Magic to prevent 'jumping'
-
-        var p1 = CGPoint(x: 21.8, y: 28.8)
-        var p2 = CGPoint(x: 11.5, y: 37)
-
-        leftEye.layer.transform = eyeTransform
-            .translate(.x, by: p2.x - p1.x)
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 72.4, y: 28.8)
-        p2 = CGPoint(x: 62.1, y: 37)
-
-        rightEye.layer.transform = eyeTransform
-            .translate(.x, by: p2.x - p1.x)
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 24, y: 43)
-        p2 = CGPoint(x: 12.9, y: 45.1)
+        var p1 = CGPoint(x: 24, y: 43)
+        var p2 = CGPoint(x: 12.9, y: 45.1)
 
         muzzle.layer.transform = CATransform3D
             .identity
@@ -242,31 +220,11 @@ final class CritterView: UIView {
          rightEar,
          leftEarMask,
          rightEarMask,
-         leftEye].applyActiveEndState()
+         leftEye,
+         rightEye].applyActiveEndState()
 
-        let eyeScale: CGFloat = 1.12
-        let eyeTransform = CATransform3D
-            .identity
-            .scale(.x, by: eyeScale)
-            .scale(.y, by: eyeScale)
-            .scale(.z, by: 1.01) // 🎩✨ Magic to prevent 'jumping'
-
-        var p1 = CGPoint(x: 21.8, y: 28.8)
-        var p2 = CGPoint(x: 11.5, y: 37)
-
-        leftEye.layer.transform = eyeTransform
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 72.4, y: 28.8)
-        p2 = CGPoint(x: 62.1, y: 37)
-
-        rightEye.layer.transform = eyeTransform
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 24, y: 43)
-        p2 = CGPoint(x: 12.9, y: 45.1)
+        var p1 = CGPoint(x: 24, y: 43)
+        var p2 = CGPoint(x: 12.9, y: 45.1)
 
         muzzle.layer.transform = CATransform3D
             .identity
@@ -301,7 +259,7 @@ final class CritterView: UIView {
         focusIntermediateState[.nose] = nose.layer.transform
         focusIntermediateState[.rightEarMask] = rightEarMask.currentState
         focusIntermediateState[.rightEar] = rightEar.currentState
-        focusIntermediateState[.rightEye] = rightEye.layer.transform
+        focusIntermediateState[.rightEye] = rightEye.currentState
     }
 
     func restoreState() {

@@ -19,7 +19,7 @@ final class CritterView: UIView {
     private let leftEye = LeftEye()
     private let mouthOpen = UIImageView(image: UIImage.Critter.mouthOpen)
     private let muzzle = Muzzle()
-    private let nose = UIImageView(image: UIImage.Critter.nose)
+    private let nose = Nose()
     private let rightEar = RightEar()
     private let rightEarMask = RightEarMask()
     private let rightEye = RightEye()
@@ -47,7 +47,6 @@ final class CritterView: UIView {
         head.addSubview(muzzle)
 
         muzzle.addSubview(nose)
-        nose.frame = CGRect(x: 22.4, y: 1.7, width: 12.7, height: 9.6)
 
         muzzle.addSubview(mouthOpen)
         mouthOpen.frame = CGRect(x: 15.5, y: 24.6, width: 26.4, height: 18.7)
@@ -130,10 +129,10 @@ final class CritterView: UIView {
              self.rightEarMask,
              self.leftEye,
              self.rightEye,
-             self.muzzle].applyInactiveState()
+             self.muzzle,
+             self.nose].applyInactiveState()
 
-            self.muzzle.layer.transform = .identity
-            self.nose.layer.transform = .identity
+            self.mouthOpen.layer.transform = .identity
         }
 
         neutralAnimation.startAnimation()
@@ -183,18 +182,11 @@ final class CritterView: UIView {
          rightEarMask,
          leftEye,
          rightEye,
-         muzzle].applyActiveStartState()
+         muzzle,
+         nose].applyActiveStartState()
 
-        var p1 = CGPoint(x: 22.4, y: 1.7)
-        var p2 = CGPoint(x: 13.2, y: 5.2)
-
-        nose.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: p2.x - p1.x)
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 15.5, y: 24.6)
-        p2 = CGPoint(x: 14.9, y: 22.1)
+        let p1 = CGPoint(x: 15.5, y: 24.6)
+        let p2 = CGPoint(x: 14.9, y: 22.1)
 
         mouthOpen.layer.transform = CATransform3D
             .identity
@@ -211,18 +203,11 @@ final class CritterView: UIView {
          rightEarMask,
          leftEye,
          rightEye,
-         muzzle].applyActiveEndState()
+         muzzle,
+         nose].applyActiveEndState()
 
-        var p1 = CGPoint(x: 22.4, y: 1.7)
-        var p2 = CGPoint(x: 13.2, y: 5.2)
-
-        nose.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 15.5, y: 24.6)
-        p2 = CGPoint(x: 14.9, y: 22.1)
+        let p1 = CGPoint(x: 15.5, y: 24.6)
+        let p2 = CGPoint(x: 14.9, y: 22.1)
 
         mouthOpen.layer.transform = CATransform3D
             .identity
@@ -238,7 +223,7 @@ final class CritterView: UIView {
         focusIntermediateState[.leftEye] = leftEye.currentState
         focusIntermediateState[.mouthOpen] = mouthOpen.layer.transform
         focusIntermediateState[.muzzle] = muzzle.currentState
-        focusIntermediateState[.nose] = nose.layer.transform
+        focusIntermediateState[.nose] = nose.currentState
         focusIntermediateState[.rightEarMask] = rightEarMask.currentState
         focusIntermediateState[.rightEar] = rightEar.currentState
         focusIntermediateState[.rightEye] = rightEye.currentState

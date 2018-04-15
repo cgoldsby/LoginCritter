@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let defaultPerspective: CGFloat = -1.0 / 500
+
 extension Double {
 
     var degrees: Degree {
@@ -66,7 +68,7 @@ extension CATransform3D {
         }
     }
 
-    func perspective(_ m34: CGFloat) -> CATransform3D {
+    func perspective(_ m34: CGFloat = defaultPerspective) -> CATransform3D {
         var transform = self
         transform.m34 = m34
         return transform

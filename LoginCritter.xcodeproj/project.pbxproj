@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB26A67B2083734700E5D440 /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A67A2083734700E5D440 /* Part.swift */; };
+		EB26A67E2083801100E5D440 /* Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A67D2083801100E5D440 /* Body.swift */; };
+		EB26A6802083805D00E5D440 /* CritterAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */; };
 		EB7A27352073A4EE00C38FFF /* CATransform3D+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */; };
 		EBBA760C206E6F020018CD99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760B206E6F020018CD99 /* AppDelegate.swift */; };
 		EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760D206E6F020018CD99 /* LoginViewController.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB26A67A2083734700E5D440 /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
+		EB26A67D2083801100E5D440 /* Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body.swift; sourceTree = "<group>"; };
+		EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CritterAnimatable.swift; sourceTree = "<group>"; };
 		EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransform3D+Helper.swift"; sourceTree = "<group>"; };
 		EBBA7608206E6F020018CD99 /* Login Critter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Login Critter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBA760B206E6F020018CD99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB26A67C20837FE300E5D440 /* Parts */ = {
+			isa = PBXGroup;
+			children = (
+				EB26A67D2083801100E5D440 /* Body.swift */,
+			);
+			path = Parts;
+			sourceTree = "<group>";
+		};
 		EB7A27332073A47700C38FFF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +67,9 @@
 		EB7A27362073A54100C38FFF /* Critter */ = {
 			isa = PBXGroup;
 			children = (
+				EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */,
+				EB26A67C20837FE300E5D440 /* Parts */,
+				EB26A67A2083734700E5D440 /* Part.swift */,
 				EBDC9182206E7F8C00F95959 /* CritterAssets.swift */,
 				EBBA7623206E73480018CD99 /* CritterView.swift */,
 			);
@@ -184,8 +201,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB26A6802083805D00E5D440 /* CritterAnimatable.swift in Sources */,
 				EBBA7624206E73480018CD99 /* CritterView.swift in Sources */,
 				EBBA7620206E6FDE0018CD99 /* Colors.swift in Sources */,
+				EB26A67B2083734700E5D440 /* Part.swift in Sources */,
+				EB26A67E2083801100E5D440 /* Body.swift in Sources */,
 				EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */,
 				EBBA760C206E6F020018CD99 /* AppDelegate.swift in Sources */,
 				EBDC9183206E7F8C00F95959 /* CritterAssets.swift in Sources */,

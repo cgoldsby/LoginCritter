@@ -12,6 +12,7 @@
 		EB26A6802083805D00E5D440 /* CritterAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */; };
 		EB26A6822083A3F900E5D440 /* Degree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A6812083A3F900E5D440 /* Degree.swift */; };
 		EB26A6842083A53100E5D440 /* Head.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A6832083A53100E5D440 /* Head.swift */; };
+		EB26A6862083ABE700E5D440 /* LeftEar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB26A6852083ABE700E5D440 /* LeftEar.swift */; };
 		EB7A27352073A4EE00C38FFF /* CATransform3D+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */; };
 		EBBA760C206E6F020018CD99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760B206E6F020018CD99 /* AppDelegate.swift */; };
 		EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760D206E6F020018CD99 /* LoginViewController.swift */; };
@@ -28,6 +29,7 @@
 		EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CritterAnimatable.swift; sourceTree = "<group>"; };
 		EB26A6812083A3F900E5D440 /* Degree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Degree.swift; sourceTree = "<group>"; };
 		EB26A6832083A53100E5D440 /* Head.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Head.swift; sourceTree = "<group>"; };
+		EB26A6852083ABE700E5D440 /* LeftEar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftEar.swift; sourceTree = "<group>"; };
 		EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransform3D+Helper.swift"; sourceTree = "<group>"; };
 		EBBA7608206E6F020018CD99 /* Login Critter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Login Critter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBA760B206E6F020018CD99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				EB26A67D2083801100E5D440 /* Body.swift */,
 				EB26A6832083A53100E5D440 /* Head.swift */,
+				EB26A6852083ABE700E5D440 /* LeftEar.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				EBDC9183206E7F8C00F95959 /* CritterAssets.swift in Sources */,
 				EB26A6842083A53100E5D440 /* Head.swift in Sources */,
 				EB7A27352073A4EE00C38FFF /* CATransform3D+Helper.swift in Sources */,
+				EB26A6862083ABE700E5D440 /* LeftEar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

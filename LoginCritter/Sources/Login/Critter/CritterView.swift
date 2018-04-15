@@ -14,7 +14,7 @@ final class CritterView: UIView {
 
     private let body = Body()
     private let head = Head()
-    private let leftEar = UIImageView(image: UIImage.Critter.leftEar)
+    private let leftEar = LeftEar()
     private let leftEarMask = UIImageView(image: UIImage.Critter.head)
     private let leftEye = UIImageView(image: UIImage.Critter.eye)
     private let mouthOpen = UIImageView(image: UIImage.Critter.mouthOpen)
@@ -39,7 +39,6 @@ final class CritterView: UIView {
         addSubview(head)
 
         head.addSubview(leftEar)
-        leftEar.frame = CGRect(x: -9.1, y: -3.3, width: 36.7, height: 36.3)
 
         head.addSubview(leftEarMask)
         leftEarMask.layer.anchorPoint = CGPoint(x: 1, y: 0)
@@ -156,11 +155,11 @@ final class CritterView: UIView {
         let neutralAnimation = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
             [
                 self.body,
-                self.head
-            ]
+                self.head,
+                self.leftEar
+                ]
                 .applyInactiveState()
 
-            self.leftEar.layer.transform = .identity
             self.leftEarMask.layer.transform = .identity
             self.leftEye.layer.transform = .identity
             self.mouthOpen.layer.transform = .identity
@@ -210,8 +209,13 @@ final class CritterView: UIView {
     }
 
     private func focusCritterInitialState() {
-        body.applyActiveStartState()
-        head.applyActiveStartState()
+        [
+            self.body,
+            self.head,
+            self.leftEar
+            ]
+            .applyActiveStartState()
+
 
         let headTransform = CATransform3D
             .identity
@@ -246,10 +250,6 @@ final class CritterView: UIView {
             .translate(.x, by: p2.x - p1.x)
             .translate(.y, by: p2.y - p1.y)
 
-        leftEar.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: 10)
-
         rightEar.layer.transform = CATransform3D
             .identity
             .translate(.x, by: -2)
@@ -282,8 +282,13 @@ final class CritterView: UIView {
     }
 
     private func focusCritterFinalState() {
-        body.applyActiveEndState()
-        head.applyActiveEndState()
+        [
+            self.body,
+            self.head,
+            self.leftEar
+            ]
+            .applyActiveEndState()
+
 
         let headTransform = CATransform3D
             .identity
@@ -322,12 +327,6 @@ final class CritterView: UIView {
             .identity
             .translate(.x, by: -10)
 
-        leftEar.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: 2)
-            .translate(.y, by: 12)
-            .rotate(.z, by: (-8.0).degrees)
-
         p1 = CGPoint(x: 24, y: 43)
         p2 = CGPoint(x: 12.9, y: 45.1)
 
@@ -357,7 +356,7 @@ final class CritterView: UIView {
         focusIntermediateState[.body] = body.currentState
         focusIntermediateState[.head] = head.currentState
         focusIntermediateState[.leftEarMask] = leftEarMask.layer.transform
-        focusIntermediateState[.leftEar] = leftEar.layer.transform
+        focusIntermediateState[.leftEar] = leftEar.currentState
         focusIntermediateState[.leftEye] = leftEye.layer.transform
         focusIntermediateState[.mouthOpen] = mouthOpen.layer.transform
         focusIntermediateState[.muzzle] = muzzle.layer.transform

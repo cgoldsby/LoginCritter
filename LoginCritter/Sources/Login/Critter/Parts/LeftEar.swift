@@ -1,5 +1,5 @@
 //
-//  Body.swift
+//  LeftEar.swift
 //  LoginCritter
 //
 //  Created by Christopher Goldsby on 4/15/18.
@@ -8,27 +8,26 @@
 
 import UIKit
 
-final class Body: UIImageView, CritterAnimatable {
-    
+final class LeftEar: UIImageView, CritterAnimatable {
+
     convenience init() {
-        self.init(image: UIImage.Critter.body)
-        layer.zPosition = -30
-        frame = CGRect(x: 33.9, y: 109.2, width: 92.1, height: 73.4)
+        self.init(image: UIImage.Critter.leftEar)
+        frame = CGRect(x: -9.1, y: -3.3, width: 36.6, height: 36.6)
     }
-    
+
     // MARK: - CritterAnimatable
 
     func applyActiveStartState() {
         layer.transform = CATransform3D
             .identity
-            .perspective()
-            .rotate(.y, by: -10.degrees)
+            .translate(.x, by: 10)
     }
-    
+
     func applyActiveEndState() {
         layer.transform = CATransform3D
             .identity
-            .perspective()
-            .rotate(.y, by: 10.degrees)
+            .translate(.x, by: 2)
+            .translate(.y, by: 12)
+            .rotate(.z, by: -8.0.degrees)
     }
 }

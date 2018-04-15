@@ -18,20 +18,18 @@ final class Head: UIImageView, CritterAnimatable {
     // MARK: - CritterAnimatable
 
     func applyActiveStartState() {
-        let transform = CATransform3D
+        layer.transform = CATransform3D
             .identity
             .perspective()
             .rotate(.x, by: -18.0.degrees)
             .rotate(.y, by: -18.0.degrees)
-        layer.transform = transform
     }
 
     func applyActiveEndState() {
-        let transform = CATransform3D
+        layer.transform = CATransform3D
             .identity
             .perspective()
             .rotate(.x, by: -18.0.degrees)
             .rotate(.y, by: 18.0.degrees)
-        layer.transform = transform
     }
 }

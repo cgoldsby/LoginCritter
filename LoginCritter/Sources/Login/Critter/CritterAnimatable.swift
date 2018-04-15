@@ -25,3 +25,18 @@ extension CritterAnimatable where Self: UIView {
         layer.transform = .identity
     }
 }
+
+extension Sequence where Iterator.Element == CritterAnimatable {
+
+    func applyActiveStartState() {
+        forEach { $0.applyActiveStartState() }
+    }
+
+    func applyActiveEndState() {
+        forEach { $0.applyActiveEndState() }
+    }
+
+    func applyInactiveState() {
+        forEach { $0.applyInactiveState() }
+    }
+}

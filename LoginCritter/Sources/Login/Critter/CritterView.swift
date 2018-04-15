@@ -13,7 +13,7 @@ final class CritterView: UIView {
     private var isDoeEyed = false
 
     private let body = Body()
-    private let head = UIImageView(image: UIImage.Critter.head)
+    private let head = Head()
     private let leftEar = UIImageView(image: UIImage.Critter.leftEar)
     private let leftEarMask = UIImageView(image: UIImage.Critter.head)
     private let leftEye = UIImageView(image: UIImage.Critter.eye)
@@ -36,9 +36,7 @@ final class CritterView: UIView {
         setUpMask()
 
         addSubview(body)
-
         addSubview(head)
-        head.frame = CGRect(x: 29.2, y: 52.1, width: 105.5, height: 90.9)
 
         head.addSubview(leftEar)
         leftEar.frame = CGRect(x: -9.1, y: -3.3, width: 36.7, height: 36.3)
@@ -156,8 +154,12 @@ final class CritterView: UIView {
         }
 
         let neutralAnimation = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
-            self.body.applyInactiveState()
-            self.head.layer.transform = .identity
+            [
+                self.body,
+                self.head
+            ]
+                .applyInactiveState()
+
             self.leftEar.layer.transform = .identity
             self.leftEarMask.layer.transform = .identity
             self.leftEye.layer.transform = .identity
@@ -207,88 +209,15 @@ final class CritterView: UIView {
         focusCritterEndAnimation = nil
     }
 
-    private func focusCritterFinalState() {
-        body.applyActiveEndState()
-
-        let headTransform = CATransform3D
-            .identity
-            .perspective(-1.0 / 500)
-            .rotate(.x, by: (-18.0).degrees)
-            .rotate(.y, by: (18.0).degrees)
-
-        head.layer.transform = headTransform
-
-        leftEarMask.layer.transform = CATransform3D
-            .identity
-            .scale(.x, by: 0.82)
-
-        rightEarMask.layer.transform = .identity
-
-        let eyeScale: CGFloat = 1.12
-        let eyeTransform = CATransform3D
-            .identity
-            .scale(.x, by: eyeScale)
-            .scale(.y, by: eyeScale)
-            .scale(.z, by: 1.01) // 🎩✨ Magic to prevent 'jumping'
-
-        var p1 = CGPoint(x: 21.8, y: 28.8)
-        var p2 = CGPoint(x: 11.5, y: 37)
-
-        leftEye.layer.transform = eyeTransform
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 72.4, y: 28.8)
-        p2 = CGPoint(x: 62.1, y: 37)
-
-        rightEye.layer.transform = eyeTransform
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-
-        rightEar.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: -10)
-
-        leftEar.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: 2)
-            .translate(.y, by: 12)
-            .rotate(.z, by: (-8.0).degrees)
-
-        p1 = CGPoint(x: 24, y: 43)
-        p2 = CGPoint(x: 12.9, y: 45.1)
-
-        muzzle.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 22.4, y: 1.7)
-        p2 = CGPoint(x: 13.2, y: 5.2)
-
-        nose.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-
-        p1 = CGPoint(x: 15.5, y: 24.6)
-        p2 = CGPoint(x: 14.9, y: 22.1)
-
-        mouthOpen.layer.transform = CATransform3D
-            .identity
-            .translate(.x, by: -(p2.x - p1.x))
-            .translate(.y, by: p2.y - p1.y)
-    }
-
     private func focusCritterInitialState() {
         body.applyActiveStartState()
+        head.applyActiveStartState()
 
         let headTransform = CATransform3D
             .identity
             .perspective(-1.0 / 500)
             .rotate(.x, by: (-18.0).degrees)
             .rotate(.y, by: (-18.0).degrees)
-        head.layer.transform = headTransform
 
         rightEarMask.layer.transform = CATransform3D
             .identity
@@ -352,9 +281,81 @@ final class CritterView: UIView {
             .translate(.y, by: p2.y - p1.y)
     }
 
+    private func focusCritterFinalState() {
+        body.applyActiveEndState()
+        head.applyActiveEndState()
+
+        let headTransform = CATransform3D
+            .identity
+            .perspective(-1.0 / 500)
+            .rotate(.x, by: (-18.0).degrees)
+            .rotate(.y, by: (18.0).degrees)
+
+        leftEarMask.layer.transform = CATransform3D
+            .identity
+            .scale(.x, by: 0.82)
+
+        rightEarMask.layer.transform = .identity
+
+        let eyeScale: CGFloat = 1.12
+        let eyeTransform = CATransform3D
+            .identity
+            .scale(.x, by: eyeScale)
+            .scale(.y, by: eyeScale)
+            .scale(.z, by: 1.01) // 🎩✨ Magic to prevent 'jumping'
+
+        var p1 = CGPoint(x: 21.8, y: 28.8)
+        var p2 = CGPoint(x: 11.5, y: 37)
+
+        leftEye.layer.transform = eyeTransform
+            .translate(.x, by: -(p2.x - p1.x))
+            .translate(.y, by: p2.y - p1.y)
+
+        p1 = CGPoint(x: 72.4, y: 28.8)
+        p2 = CGPoint(x: 62.1, y: 37)
+
+        rightEye.layer.transform = eyeTransform
+            .translate(.x, by: -(p2.x - p1.x))
+            .translate(.y, by: p2.y - p1.y)
+
+        rightEar.layer.transform = CATransform3D
+            .identity
+            .translate(.x, by: -10)
+
+        leftEar.layer.transform = CATransform3D
+            .identity
+            .translate(.x, by: 2)
+            .translate(.y, by: 12)
+            .rotate(.z, by: (-8.0).degrees)
+
+        p1 = CGPoint(x: 24, y: 43)
+        p2 = CGPoint(x: 12.9, y: 45.1)
+
+        muzzle.layer.transform = CATransform3D
+            .identity
+            .translate(.x, by: -(p2.x - p1.x))
+            .translate(.y, by: p2.y - p1.y)
+
+        p1 = CGPoint(x: 22.4, y: 1.7)
+        p2 = CGPoint(x: 13.2, y: 5.2)
+
+        nose.layer.transform = CATransform3D
+            .identity
+            .translate(.x, by: -(p2.x - p1.x))
+            .translate(.y, by: p2.y - p1.y)
+
+        p1 = CGPoint(x: 15.5, y: 24.6)
+        p2 = CGPoint(x: 14.9, y: 22.1)
+
+        mouthOpen.layer.transform = CATransform3D
+            .identity
+            .translate(.x, by: -(p2.x - p1.x))
+            .translate(.y, by: p2.y - p1.y)
+    }
+
     func storeCurrentState() {
         focusIntermediateState[.body] = body.currentState
-        focusIntermediateState[.head] = head.layer.transform
+        focusIntermediateState[.head] = head.currentState
         focusIntermediateState[.leftEarMask] = leftEarMask.layer.transform
         focusIntermediateState[.leftEar] = leftEar.layer.transform
         focusIntermediateState[.leftEye] = leftEye.layer.transform

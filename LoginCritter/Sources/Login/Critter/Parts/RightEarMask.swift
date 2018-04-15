@@ -1,5 +1,5 @@
 //
-//  LeftEarMask.swift
+//  RightEarMask.swift
 //  LoginCritter
 //
 //  Created by Christopher Goldsby on 4/15/18.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class LeftEarMask: UIImageView, CritterAnimatable {
+final class RightEarMask: UIImageView, CritterAnimatable {
 
     convenience init() {
         self.init(image: UIImage.Critter.head)
-        layer.anchorPoint = CGPoint(x: 1, y: 0)
+        layer.anchorPoint = CGPoint(x: 0, y: 0)
     }
 
     override func didMoveToSuperview() {
@@ -24,21 +24,22 @@ final class LeftEarMask: UIImageView, CritterAnimatable {
             let mask = UIView()
             mask.backgroundColor = .black
             var frame = superview.bounds
+            frame.origin.x = frame.midX
             frame.size.width = frame.width / 2
             mask.frame = frame
             return mask
         }()
     }
-    
+
     // MARK: - CritterAnimatable
 
     func applyActiveStartState() {
-        layer.transform = .identity
-    }
-
-    func applyActiveEndState() {
         layer.transform = CATransform3D
             .identity
             .scale(.x, by: 0.82)
+    }
+
+    func applyActiveEndState() {
+        layer.transform = .identity
     }
 }

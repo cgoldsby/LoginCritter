@@ -21,7 +21,7 @@ final class CritterView: UIView {
     private let muzzle = UIImageView(image: UIImage.Critter.muzzle)
     private let nose = UIImageView(image: UIImage.Critter.nose)
     private let rightEar = RightEar()
-    private let rightEarMask = UIImageView(image: UIImage.Critter.head)
+    private let rightEarMask = RightEarMask()
     private let rightEye = UIImageView(image: UIImage.Critter.eye)
 
     override func didMoveToSuperview() {
@@ -42,21 +42,7 @@ final class CritterView: UIView {
         head.addSubview(rightEar)
 
         head.addSubview(leftEarMask)
-
-
-
         head.addSubview(rightEarMask)
-        rightEarMask.layer.anchorPoint = CGPoint(x: 0, y: 0)
-        rightEarMask.frame = head.bounds
-        rightEarMask.mask = {
-            let mask = UIView()
-            mask.backgroundColor = .black
-            var frame = head.bounds
-            frame.origin.x = frame.midX
-            frame.size.width = frame.width / 2
-            mask.frame = frame
-            return mask
-        }()
 
         head.addSubview(leftEye)
         leftEye.frame = CGRect(x: 21.8, y: 28.8, width: 11.7, height: 11.7)
@@ -147,14 +133,14 @@ final class CritterView: UIView {
              self.head,
              self.leftEar,
              self.rightEar,
-             self.leftEarMask
+             self.leftEarMask,
+             self.rightEarMask
                 ].applyInactiveState()
 
             self.leftEye.layer.transform = .identity
             self.mouthOpen.layer.transform = .identity
             self.muzzle.layer.transform = .identity
             self.nose.layer.transform = .identity
-            self.rightEarMask.layer.transform = .identity
             self.rightEye.layer.transform = .identity
         }
 
@@ -201,11 +187,8 @@ final class CritterView: UIView {
          head,
          leftEar,
          rightEar,
-         leftEarMask].applyActiveStartState()
-
-        rightEarMask.layer.transform = CATransform3D
-            .identity
-            .scale(.x, by: 0.82)
+         leftEarMask,
+         rightEarMask].applyActiveStartState()
 
         let eyeScale: CGFloat = 1.12
         let eyeTransform = CATransform3D
@@ -258,9 +241,8 @@ final class CritterView: UIView {
          head,
          leftEar,
          rightEar,
-         leftEarMask].applyActiveEndState()
-
-        rightEarMask.layer.transform = .identity
+         leftEarMask,
+         rightEarMask].applyActiveEndState()
 
         let eyeScale: CGFloat = 1.12
         let eyeTransform = CATransform3D
@@ -317,7 +299,7 @@ final class CritterView: UIView {
         focusIntermediateState[.mouthOpen] = mouthOpen.layer.transform
         focusIntermediateState[.muzzle] = muzzle.layer.transform
         focusIntermediateState[.nose] = nose.layer.transform
-        focusIntermediateState[.rightEarMask] = rightEarMask.layer.transform
+        focusIntermediateState[.rightEarMask] = rightEarMask.currentState
         focusIntermediateState[.rightEar] = rightEar.currentState
         focusIntermediateState[.rightEye] = rightEye.layer.transform
     }

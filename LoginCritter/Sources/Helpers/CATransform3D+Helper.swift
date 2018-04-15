@@ -10,22 +10,6 @@ import UIKit
 
 private let defaultPerspective: CGFloat = -1.0 / 500
 
-extension Double {
-
-    var degrees: Degree {
-        return Degree(value: self)
-    }
-}
-
-struct Degree {
-
-    let value: Double
-
-    var radians: CGFloat {
-        return CGFloat(value * Double.pi / 180.0)
-    }
-}
-
 extension CATransform3D {
 
     enum Axis { case x, y, z }

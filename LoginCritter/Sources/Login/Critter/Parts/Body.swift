@@ -22,7 +22,7 @@ final class Body: UIImageView, CritterAnimatable {
         let transform = CATransform3D
             .identity
             .perspective()
-            .rotate(.y, by: (-10.0).degrees)
+            .rotate(.y, by: -10.degrees)
         layer.transform = transform
     }
     
@@ -30,7 +30,7 @@ final class Body: UIImageView, CritterAnimatable {
         let transform = CATransform3D
             .identity
             .perspective()
-            .rotate(.y, by: 10.0.degrees)
+            .rotate(.y, by: 10.degrees)
         layer.transform = transform
     }
 }

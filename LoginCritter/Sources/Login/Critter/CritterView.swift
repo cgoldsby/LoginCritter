@@ -15,7 +15,7 @@ final class CritterView: UIView {
     private let leftEar = LeftEar()
     private let leftEarMask = LeftEarMask()
     private let leftEye = LeftEye()
-    private let mouthOpen = Mouth()
+    private let mouth = Mouth()
     private let muzzle = Muzzle()
     private let nose = Nose()
     private let rightEar = RightEar()
@@ -33,7 +33,7 @@ final class CritterView: UIView {
                 self.rightEye,
                 self.muzzle,
                 self.nose,
-                self.mouthOpen]
+                self.mouth]
     }()
 
     private var isEcstatic = false
@@ -61,7 +61,7 @@ final class CritterView: UIView {
         head.addSubview(muzzle)
 
         muzzle.addSubview(nose)
-        muzzle.addSubview(mouthOpen)
+        muzzle.addSubview(mouth)
     }
 
     private func setUpMask() {

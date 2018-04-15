@@ -98,8 +98,8 @@
 		EB7A27362073A54100C38FFF /* Critter */ = {
 			isa = PBXGroup;
 			children = (
-				EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */,
 				EB26A67C20837FE300E5D440 /* Parts */,
+				EB26A67F2083805D00E5D440 /* CritterAnimatable.swift */,
 				EBDC9182206E7F8C00F95959 /* CritterAssets.swift */,
 				EBBA7623206E73480018CD99 /* CritterView.swift */,
 			);

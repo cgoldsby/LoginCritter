@@ -11,7 +11,7 @@ import UIKit
 final class Mouth: UIImageView, CritterAnimatable {
     
     convenience init() {
-        self.init(image: UIImage.Critter.mouthOpen)
+        self.init(image: UIImage.Critter.mouthFull)
         frame = CGRect(x: 15.5, y: 24.6, width: 26.4, height: 18.7)
     }
     

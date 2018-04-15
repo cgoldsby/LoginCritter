@@ -16,10 +16,10 @@ extension UIImage {
         static let doeEye = #imageLiteral(resourceName: "Eye-doe")
         static let eye = #imageLiteral(resourceName: "Eye")
         static let head = #imageLiteral(resourceName: "Head")
-        static let mouthOpen = #imageLiteral(resourceName: "Mouth-open")
+        static let leftEar = #imageLiteral(resourceName: "Ear")
+        static let mouthFull = #imageLiteral(resourceName: "Mouth-full")
         static let muzzle = #imageLiteral(resourceName: "Muzzle")
         static let nose = #imageLiteral(resourceName: "Nose")
-        static let leftEar = #imageLiteral(resourceName: "Ear")
         static let rightEar: UIImage = {
             let leftEar = UIImage.Critter.leftEar
             return UIImage(

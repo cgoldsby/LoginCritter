@@ -18,10 +18,21 @@ final class Mouth: UIImageView, CritterAnimatable {
     
     // MARK: - CritterAnimatable
 
+    func currentState() -> SavedState {
+        let currentState = layer.transform
+
+        return {
+            self.layer.transform = currentState
+            self.layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
+            self.layer.contents = UIImage.Critter.mouthHalf.cgImage
+        }
+    }
+
     func applyInactiveState() {
         layer.transform = .identity
-        bounds = CGRect(x: 0, y: 0, width: 26.6, height: 7.3)
-        image = UIImage.Critter.mouthClosed
+
+        layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 7.3)
+        layer.contents = UIImage.Critter.mouthClosed.cgImage
     }
     
     func applyActiveStartState() {
@@ -33,8 +44,8 @@ final class Mouth: UIImageView, CritterAnimatable {
             .translate(.x, by: p2.x - p1.x)
             .translate(.y, by: p2.y - p1.y)
 
-        bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
-        image = UIImage.Critter.mouthHalf
+        layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
+        layer.contents = UIImage.Critter.mouthHalf.cgImage
     }
     
     func applyActiveEndState() {

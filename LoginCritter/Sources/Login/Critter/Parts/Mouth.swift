@@ -14,12 +14,11 @@ final class Mouth: UIImageView, CritterAnimatable {
 
     private var isActive = false
     private let p1 = CGPoint(x: 13.7, y: 24.9)
-    private let p2 = CGPoint(x: 14.3, y: 27.6)
+    private let p2 = CGPoint(x: 14.3, y: 26.2)
 
     convenience init() {
         self.init(image: UIImage.Critter.mouthSmile)
         frame = CGRect(x: p1.x, y: p1.y, width: 30, height: 6.5)
-        layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     }
     
     // MARK: - CritterAnimatable

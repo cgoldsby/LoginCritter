@@ -10,9 +10,12 @@ import UIKit
 
 final class LeftEye: UIImageView, CritterAnimatable {
 
+    private let p1 = CGPoint(x: 21.8, y: 28.8)
+    private let p2 = CGPoint(x: 9.7, y: 41.1)
+
     convenience init() {
         self.init(image: UIImage.Critter.eye)
-        frame = CGRect(x: 21.8, y: 28.8, width: 11.7, height: 11.7)
+        frame = CGRect(x: p1.x, y: p1.y, width: 11.7, height: 11.7)
     }
 
     // MARK: - CritterAnimatable
@@ -24,9 +27,6 @@ final class LeftEye: UIImageView, CritterAnimatable {
             .scale(.x, by: eyeScale)
             .scale(.y, by: eyeScale)
             .scale(.z, by: 1.01) // 🎩✨ Magic to prevent 'jumping'
-
-        let p1 = CGPoint(x: 21.8, y: 28.8)
-        let p2 = CGPoint(x: 11.5, y: 37)
 
         layer.transform = eyeTransform
             .translate(.x, by: p2.x - p1.x)
@@ -40,9 +40,6 @@ final class LeftEye: UIImageView, CritterAnimatable {
             .scale(.x, by: eyeScale)
             .scale(.y, by: eyeScale)
             .scale(.z, by: 1.01) // 🎩✨ Magic to prevent 'jumping'
-
-        let p1 = CGPoint(x: 21.8, y: 28.8)
-        let p2 = CGPoint(x: 11.5, y: 37)
 
         layer.transform = eyeTransform
             .translate(.x, by: -(p2.x - p1.x))

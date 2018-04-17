@@ -12,13 +12,13 @@ final class Nose: UIImageView, CritterAnimatable {
 
     convenience init() {
         self.init(image: UIImage.Critter.nose)
-        frame = CGRect(x: 22.4, y: 1.7, width: 12.7, height: 9.6)
+        frame = CGRect(x: 22.2, y: 2.2, width: 13, height: 9.6)
     }
 
     // MARK: - CritterAnimatable
 
     func applyActiveStartState() {
-        let p1 = CGPoint(x: 22.4, y: 1.7)
+        let p1 = CGPoint(x: 22.2, y: 2.2)
         let p2 = CGPoint(x: 13.2, y: 5.2)
 
         layer.transform = CATransform3D
@@ -28,7 +28,7 @@ final class Nose: UIImageView, CritterAnimatable {
     }
     
     func applyActiveEndState() {
-        let p1 = CGPoint(x: 22.4, y: 1.7)
+        let p1 = CGPoint(x: 22.2, y: 2.2)
         let p2 = CGPoint(x: 13.2, y: 5.2)
 
         layer.transform = CATransform3D

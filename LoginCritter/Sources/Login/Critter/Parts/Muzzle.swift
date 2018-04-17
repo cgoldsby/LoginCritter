@@ -12,7 +12,7 @@ final class Muzzle: UIImageView, CritterAnimatable {
 
     convenience init() {
         self.init(image: UIImage.Critter.muzzle)
-        frame = CGRect(x: 24, y: 43, width: 57.5, height: 46.8)
+        frame = CGRect(x: 24, y: 43, width: 57.5, height: 46.3)
     }
 
     // MARK: - CritterAnimatable

@@ -15,8 +15,8 @@ final class Mouth: UIImageView, CritterAnimatable {
     private var isActive = false
 
     convenience init() {
-        self.init(image: UIImage.Critter.mouthClosed)
-        frame = CGRect(x: 15.6, y: 27, width: 26.6, height: 7.3)
+        self.init(image: UIImage.Critter.mouthSmile)
+        frame = CGRect(x: 13.7, y: 24.9, width: 30, height: 6.5)
         layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     }
     
@@ -64,16 +64,20 @@ final class Mouth: UIImageView, CritterAnimatable {
 
     func applyEcstaticState() {
         if isEcstatic {
-            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 18.7)
             layer.contents = UIImage.Critter.mouthFull.cgImage
+            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 18.7)
         }
         else if isActive {
-            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
             layer.contents = UIImage.Critter.mouthHalf.cgImage
+            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 13.7)
         }
         else {
-            layer.bounds = CGRect(x: 0, y: 0, width: 26.6, height: 7.3)
-            layer.contents = UIImage.Critter.mouthClosed.cgImage
+            UIView.transition(with: self,
+                              duration: 0.125,
+                              options: .transitionCrossDissolve,
+                              animations: { self.layer.contents = UIImage.Critter.mouthSmile.cgImage },
+                              completion: nil)
+            layer.bounds = CGRect(x: 0, y: 0, width: 30, height: 6.5)
         }
     }
 }

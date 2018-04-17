@@ -13,10 +13,12 @@ final class Mouth: UIImageView, CritterAnimatable {
     var isEcstatic = false
 
     private var isActive = false
+    private let p1 = CGPoint(x: 13.7, y: 24.9)
+    private let p2 = CGPoint(x: 14.3, y: 27.6)
 
     convenience init() {
         self.init(image: UIImage.Critter.mouthSmile)
-        frame = CGRect(x: 13.7, y: 24.9, width: 30, height: 6.5)
+        frame = CGRect(x: p1.x, y: p1.y, width: 30, height: 6.5)
         layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     }
     
@@ -40,9 +42,6 @@ final class Mouth: UIImageView, CritterAnimatable {
     }
     
     func applyActiveStartState() {
-        let p1 = CGPoint(x: 15.6, y: 24.6)
-        let p2 = CGPoint(x: 14.9, y: 22.1)
-        
         layer.transform = CATransform3D
             .identity
             .translate(.x, by: p2.x - p1.x)
@@ -53,9 +52,6 @@ final class Mouth: UIImageView, CritterAnimatable {
     }
     
     func applyActiveEndState() {
-        let p1 = CGPoint(x: 15.6, y: 24.6)
-        let p2 = CGPoint(x: 14.9, y: 22.1)
-        
         layer.transform = CATransform3D
             .identity
             .translate(.x, by: -(p2.x - p1.x))

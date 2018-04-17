@@ -10,17 +10,17 @@ import UIKit
 
 final class Muzzle: UIImageView, CritterAnimatable {
 
+    private let p1 = CGPoint(x: 24, y: 43)
+    private let p2 = CGPoint(x: 11.2, y: 48)
+
     convenience init() {
         self.init(image: UIImage.Critter.muzzle)
-        frame = CGRect(x: 24, y: 43, width: 57.5, height: 46.3)
+        frame = CGRect(x: p1.x, y: p1.y, width: 57.5, height: 46.3)
     }
 
     // MARK: - CritterAnimatable
 
     func applyActiveStartState() {
-        let p1 = CGPoint(x: 24, y: 43)
-        let p2 = CGPoint(x: 12.9, y: 45.1)
-
         layer.transform = CATransform3D
             .identity
             .translate(.x, by: p2.x - p1.x)
@@ -28,9 +28,6 @@ final class Muzzle: UIImageView, CritterAnimatable {
     }
 
     func applyActiveEndState() {
-        let p1 = CGPoint(x: 24, y: 43)
-        let p2 = CGPoint(x: 12.9, y: 45.1)
-
         layer.transform = CATransform3D
             .identity
             .translate(.x, by: -(p2.x - p1.x))

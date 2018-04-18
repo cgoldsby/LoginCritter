@@ -22,13 +22,13 @@ final class Body: UIImageView, CritterAnimatable {
         layer.transform = CATransform3D
             .identity
             .perspective()
-            .rotate(.y, by: -10.degrees)
+            .rotate(.y, by: -12.degrees)
     }
     
     func applyActiveEndState() {
         layer.transform = CATransform3D
             .identity
             .perspective()
-            .rotate(.y, by: 10.degrees)
+            .rotate(.y, by: 12.degrees)
     }
 }

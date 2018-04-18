@@ -13,9 +13,11 @@ private let critterViewTopMargin: CGFloat = 70
 
 final class LoginViewController: UIViewController {
 
-    private lazy var critterView = {
-        return CritterView(frame: CGRect(x: 0, y: 0, width: critterViewDimension, height: critterViewDimension))
-    }()
+    private let critterView = CritterView(frame: CGRect(x: 0, y: 0, width: critterViewDimension, height: critterViewDimension))
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +28,9 @@ final class LoginViewController: UIViewController {
 
     private func setUpView() {
         view.backgroundColor = Colors.dark
-
         view.addSubview(critterView)
         setUpCritterViewConstraints()
+        setUpNotification()
 
         dev_setUpTestUI()
     }
@@ -39,6 +41,14 @@ final class LoginViewController: UIViewController {
         critterView.widthAnchor.constraint(equalTo: critterView.heightAnchor).isActive = true
         critterView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         critterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: critterViewTopMargin).isActive = true
+    }
+
+    private func setUpNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+    }
+
+    @objc private func applicationDidEnterBackground() {
+        dev_neutralAnimation()
     }
 
     // MARK: - Dev

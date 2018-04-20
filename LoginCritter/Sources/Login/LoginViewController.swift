@@ -13,6 +13,7 @@ private let critterViewTopMargin: CGFloat = 70
 private let emailTextFieldTopMargin: CGFloat = 38.8
 private let emailTextFieldWidth: CGFloat = 206
 private let emailTextFieldHeight: CGFloat = 37
+private let emailTextFieldMargin: CGFloat = 16.5
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -21,7 +22,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     private lazy var emailTextField: UITextField = {
         let view = UITextField(frame: CGRect(x: 0, y: 0, width: emailTextFieldWidth, height: emailTextFieldHeight))
         view.backgroundColor = .white
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 4.07
         view.tintColor = Colors.dark
         view.placeholder = "Email"
         view.keyboardType = .emailAddress
@@ -30,6 +31,17 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         view.spellCheckingType = .no
         view.delegate = self
         view.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        let frame = CGRect(x: 0, y: 0, width: emailTextFieldMargin, height: emailTextFieldHeight)
+        view.leftView = UIView(frame: frame)
+        view.leftViewMode = .always
+
+        view.rightView = UIView(frame: frame)
+        view.rightViewMode = .always
+
+        view.font = UIFont.systemFont(ofSize: 14.0)
+        view.textColor = Colors.text
+
         return view
     }()
 
@@ -102,7 +114,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private func fractionComplete(for textField: UITextField) -> Float {
         guard let text = textField.text, let font = textField.font else { return 0 }
-        return min(Float(text.size(withAttributes: [NSAttributedStringKey.font : font]).width / textField.bounds.width), 1)
+        let textFieldWidth = textField.bounds.width - (2 * emailTextFieldMargin)
+        return min(Float(text.size(withAttributes: [NSAttributedStringKey.font : font]).width / textFieldWidth), 1)
     }
 
     // MARK: - Dev

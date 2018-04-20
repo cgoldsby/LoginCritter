@@ -67,6 +67,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func textFieldDidChange(_ textField: UITextField) {
+        guard !critterView.isActiveStartAnimating else { return }
+
         let fractionComplete = self.fractionComplete(for: textField)
         critterView.updateHeadRotation(to: fractionComplete)
 

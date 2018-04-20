@@ -10,6 +10,11 @@ import UIKit
 
 final class CritterView: UIView {
 
+    var isActiveStartAnimating: Bool {
+        guard let activeStartAnimation = activeStartAnimation else { return false }
+        return activeStartAnimation.state == .active
+    }
+
     private let body = Body()
     private let head = Head()
     private let leftEar = LeftEar()

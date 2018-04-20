@@ -72,8 +72,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         let fractionComplete = self.fractionComplete(for: textField)
         critterView.updateHeadRotation(to: fractionComplete)
 
-        if let text = textField.text, text.range(of: "@") != nil {
-            critterView.validateAnimation()
+        if let text = textField.text {
+            critterView.isEcstatic = text.range(of: "@") != nil
         }
     }
 
@@ -186,7 +186,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func dev_ecstaticAnimation() {
-        critterView.validateAnimation()
+        critterView.isEcstatic = !critterView.isEcstatic
     }
 
     @objc private func dev_activeAnimationSliderValueChanged(sender: UISlider) {

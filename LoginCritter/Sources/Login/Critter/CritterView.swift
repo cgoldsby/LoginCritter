@@ -15,6 +15,15 @@ final class CritterView: UIView {
         return activeStartAnimation.state == .active
     }
 
+    var isEcstatic: Bool = false {
+        didSet {
+            mouth.isEcstatic = isEcstatic
+            if oldValue != isEcstatic {
+                ecstaticAnimation()
+            }
+        }
+    }
+
     private let body = Body()
     private let head = Head()
     private let leftEar = LeftEar()
@@ -40,13 +49,6 @@ final class CritterView: UIView {
                 self.nose,
                 self.mouth]
     }()
-
-    private var isEcstatic = false {
-
-        didSet {
-            mouth.isEcstatic = isEcstatic
-        }
-    }
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -140,9 +142,7 @@ final class CritterView: UIView {
         neutralAnimation?.startAnimation()
     }
 
-    func validateAnimation() {
-        isEcstatic = !isEcstatic
-
+    private func ecstaticAnimation() {
         let duration = 0.125
         let eyeAnimationKey = "eyeCrossFade"
         leftEye.layer.removeAnimation(forKey: eyeAnimationKey)

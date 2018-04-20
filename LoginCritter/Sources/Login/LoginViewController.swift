@@ -83,6 +83,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(emailTextField)
         setUpCritterViewConstraints()
         setUpEmailTextFieldConstraints()
+        setUpGestures()
         setUpNotification()
 
         dev_setUpTestUI()
@@ -104,6 +105,11 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.topAnchor.constraint(equalTo: critterView.bottomAnchor, constant: emailTextFieldTopMargin).isActive = true
     }
 
+    private func setUpGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+
     private func setUpNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
@@ -116,6 +122,10 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let text = textField.text, let font = textField.font else { return 0 }
         let textFieldWidth = textField.bounds.width - (2 * emailTextFieldMargin)
         return min(Float(text.size(withAttributes: [NSAttributedStringKey.font : font]).width / textFieldWidth), 1)
+    }
+
+    @objc private func handleTap() {
+        dev_neutralAnimation()
     }
 
     // MARK: - Dev

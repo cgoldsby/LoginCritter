@@ -116,6 +116,10 @@ final class CritterView: UIView {
     }
 
     func stopHeadRotation() {
+        if let neutralAnimation = neutralAnimation, neutralAnimation.state == .inactive {
+            return
+        }
+
         let shouldSaveCurrentState = activeEndAnimation != nil
 
         stopAllAnimations()

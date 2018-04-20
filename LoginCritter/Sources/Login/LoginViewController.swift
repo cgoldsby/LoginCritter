@@ -10,10 +10,10 @@ import UIKit
 
 private let critterViewDimension: CGFloat = 160
 private let critterViewTopMargin: CGFloat = 70
-private let emailTextFieldTopMargin: CGFloat = 38.8
-private let emailTextFieldWidth: CGFloat = 206
-private let emailTextFieldHeight: CGFloat = 37
-private let emailTextFieldMargin: CGFloat = 16.5
+private let textFieldTopMargin: CGFloat = 38.8
+private let textFieldWidth: CGFloat = 206
+private let textFieldHeight: CGFloat = 37
+private let textFieldHorizontalMargin: CGFloat = 16.5
 private let textFieldSpacing: CGFloat = 22
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -69,10 +69,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == emailTextField {
-            let deadlineTime = DispatchTime.now() + .milliseconds(100)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
-                self.critterView.stopHeadRotation()
-            }
+            critterView.stopHeadRotation()
         }
     }
 
@@ -113,16 +110,16 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private func setUpEmailTextFieldConstraints() {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.heightAnchor.constraint(equalToConstant: emailTextFieldHeight).isActive = true
-        emailTextField.widthAnchor.constraint(equalToConstant: emailTextFieldWidth).isActive = true
+        emailTextField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
+        emailTextField.widthAnchor.constraint(equalToConstant: textFieldWidth).isActive = true
         emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        emailTextField.topAnchor.constraint(equalTo: critterView.bottomAnchor, constant: emailTextFieldTopMargin).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: critterView.bottomAnchor, constant: textFieldTopMargin).isActive = true
     }
 
     private func setUpPasswordTextFieldConstraints() {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.heightAnchor.constraint(equalToConstant: emailTextFieldHeight).isActive = true
-        passwordTextField.widthAnchor.constraint(equalToConstant: emailTextFieldWidth).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
+        passwordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth).isActive = true
         passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: textFieldSpacing).isActive = true
     }
@@ -142,7 +139,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private func fractionComplete(for textField: UITextField) -> Float {
         guard let text = textField.text, let font = textField.font else { return 0 }
-        let textFieldWidth = textField.bounds.width - (2 * emailTextFieldMargin)
+        let textFieldWidth = textField.bounds.width - (2 * textFieldHorizontalMargin)
         return min(Float(text.size(withAttributes: [NSAttributedStringKey.font : font]).width / textFieldWidth), 1)
     }
 
@@ -157,7 +154,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func createTextField() -> UITextField {
-        let view = UITextField(frame: CGRect(x: 0, y: 0, width: emailTextFieldWidth, height: emailTextFieldHeight))
+        let view = UITextField(frame: CGRect(x: 0, y: 0, width: textFieldWidth, height: textFieldHeight))
         view.backgroundColor = .white
         view.layer.cornerRadius = 4.07
         view.tintColor = Colors.dark
@@ -167,7 +164,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         view.delegate = self
         view.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        let frame = CGRect(x: 0, y: 0, width: emailTextFieldMargin, height: emailTextFieldHeight)
+        let frame = CGRect(x: 0, y: 0, width: textFieldHorizontalMargin, height: textFieldHeight)
         view.leftView = UIView(frame: frame)
         view.leftViewMode = .always
 

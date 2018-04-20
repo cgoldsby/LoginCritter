@@ -14,35 +14,26 @@ private let emailTextFieldTopMargin: CGFloat = 38.8
 private let emailTextFieldWidth: CGFloat = 206
 private let emailTextFieldHeight: CGFloat = 37
 private let emailTextFieldMargin: CGFloat = 16.5
+private let textFieldSpacing: CGFloat = 22
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private let critterView = CritterView(frame: CGRect(x: 0, y: 0, width: critterViewDimension, height: critterViewDimension))
 
     private lazy var emailTextField: UITextField = {
-        let view = UITextField(frame: CGRect(x: 0, y: 0, width: emailTextFieldWidth, height: emailTextFieldHeight))
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 4.07
-        view.tintColor = Colors.dark
-        view.placeholder = "Email"
-        view.keyboardType = .emailAddress
-        view.autocorrectionType = .no
-        view.autocapitalizationType = .none
-        view.spellCheckingType = .no
-        view.delegate = self
-        view.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        let textField = createTextField()
+        textField.placeholder = "Email"
+        textField.keyboardType = .emailAddress
+        textField.returnKeyType = .next
+        return textField
+    }()
 
-        let frame = CGRect(x: 0, y: 0, width: emailTextFieldMargin, height: emailTextFieldHeight)
-        view.leftView = UIView(frame: frame)
-        view.leftViewMode = .always
-
-        view.rightView = UIView(frame: frame)
-        view.rightViewMode = .always
-
-        view.font = UIFont.systemFont(ofSize: 14.0)
-        view.textColor = Colors.text
-
-        return view
+    private lazy var passwordTextField: UITextField = {
+        let textField = createTextField()
+        textField.placeholder = "Password"
+        textField.isSecureTextEntry = true
+        textField.returnKeyType = .go
+        return textField
     }()
 
     deinit {
@@ -66,6 +57,25 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        }
+        else {
+            passwordTextField.resignFirstResponder()
+        }
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            let deadlineTime = DispatchTime.now() + .milliseconds(100)
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
+                self.critterView.stopHeadRotation()
+            }
+        }
+    }
+
     @objc private func textFieldDidChange(_ textField: UITextField) {
         guard !critterView.isActiveStartAnimating else { return }
 
@@ -83,8 +93,10 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = Colors.dark
         view.addSubview(critterView)
         view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
         setUpCritterViewConstraints()
         setUpEmailTextFieldConstraints()
+        setUpPasswordTextFieldConstraints()
         setUpGestures()
         setUpNotification()
 
@@ -107,6 +119,14 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.topAnchor.constraint(equalTo: critterView.bottomAnchor, constant: emailTextFieldTopMargin).isActive = true
     }
 
+    private func setUpPasswordTextFieldConstraints() {
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.heightAnchor.constraint(equalToConstant: emailTextFieldHeight).isActive = true
+        passwordTextField.widthAnchor.constraint(equalToConstant: emailTextFieldWidth).isActive = true
+        passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: textFieldSpacing).isActive = true
+    }
+
     private func setUpGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
@@ -117,7 +137,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func applicationDidEnterBackground() {
-        dev_neutralAnimation()
+        stopHeadRotation()
     }
 
     private func fractionComplete(for textField: UITextField) -> Float {
@@ -127,7 +147,37 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func handleTap() {
-        dev_neutralAnimation()
+        stopHeadRotation()
+    }
+
+    private func stopHeadRotation() {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        critterView.stopHeadRotation()
+    }
+
+    private func createTextField() -> UITextField {
+        let view = UITextField(frame: CGRect(x: 0, y: 0, width: emailTextFieldWidth, height: emailTextFieldHeight))
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 4.07
+        view.tintColor = Colors.dark
+        view.autocorrectionType = .no
+        view.autocapitalizationType = .none
+        view.spellCheckingType = .no
+        view.delegate = self
+        view.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        let frame = CGRect(x: 0, y: 0, width: emailTextFieldMargin, height: emailTextFieldHeight)
+        view.leftView = UIView(frame: frame)
+        view.leftViewMode = .always
+
+        view.rightView = UIView(frame: frame)
+        view.rightViewMode = .always
+
+        view.font = UIFont.systemFont(ofSize: 14.0)
+        view.textColor = Colors.text
+
+        return view
     }
 
     // MARK: - Dev
@@ -180,8 +230,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func dev_neutralAnimation() {
-        emailTextField.resignFirstResponder()
-        critterView.stopHeadRotation()
+        stopHeadRotation()
         activeAnimationSlider.isEnabled = false
     }
 

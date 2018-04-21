@@ -16,6 +16,7 @@ extension UIImage {
         static let doeEye = #imageLiteral(resourceName: "Eye-doe")
         static let eye = #imageLiteral(resourceName: "Eye")
         static let head = #imageLiteral(resourceName: "Head")
+        static let leftArm = #imageLiteral(resourceName: "Arm")
         static let leftEar = #imageLiteral(resourceName: "Ear")
         static let mouthClosed = #imageLiteral(resourceName: "Mouth-closed")
         static let mouthFull = #imageLiteral(resourceName: "Mouth-full")
@@ -28,6 +29,14 @@ extension UIImage {
             return UIImage(
                 cgImage: leftEar.cgImage!,
                 scale: leftEar.scale,
+                orientation: .upMirrored
+            )
+        }()
+        static let rightArm: UIImage = {
+            let leftArm = UIImage.Critter.leftArm
+            return UIImage(
+                cgImage: leftArm.cgImage!,
+                scale: leftArm.scale,
                 orientation: .upMirrored
             )
         }()

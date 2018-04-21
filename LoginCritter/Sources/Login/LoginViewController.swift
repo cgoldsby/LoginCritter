@@ -21,23 +21,23 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     private let critterView = CritterView(frame: CGRect(x: 0, y: 0, width: critterViewDimension, height: critterViewDimension))
 
     private lazy var emailTextField: UITextField = {
-        let textField = createTextField()
-        textField.placeholder = "Email"
+        let textField = createTextField(text: "Email")
         textField.keyboardType = .emailAddress
         textField.returnKeyType = .next
         return textField
     }()
 
     private lazy var passwordTextField: UITextField = {
-        let textField = createTextField()
-        textField.placeholder = "Password"
+        let textField = createTextField(text: "Password")
         textField.isSecureTextEntry = true
         textField.returnKeyType = .go
         return textField
     }()
 
+    private let notificationCenter: NotificationCenter = .default
+
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        notificationCenter.removeObserver(self)
     }
 
     override func viewDidLoad() {
@@ -74,7 +74,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        guard !critterView.isActiveStartAnimating else { return }
+        guard !critterView.isActiveStartAnimating, textField == emailTextField else { return }
 
         let fractionComplete = self.fractionComplete(for: textField)
         critterView.updateHeadRotation(to: fractionComplete)
@@ -88,16 +88,20 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private func setUpView() {
         view.backgroundColor = Colors.dark
+
         view.addSubview(critterView)
-        view.addSubview(emailTextField)
-        view.addSubview(passwordTextField)
         setUpCritterViewConstraints()
+
+        view.addSubview(emailTextField)
         setUpEmailTextFieldConstraints()
+
+        view.addSubview(passwordTextField)
         setUpPasswordTextFieldConstraints()
+
         setUpGestures()
         setUpNotification()
 
-        dev_setUpTestUI()
+        debug_setUpDebugUI()
     }
 
     private func setUpCritterViewConstraints() {
@@ -124,27 +128,10 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: textFieldSpacing).isActive = true
     }
 
-    private func setUpGestures() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapGesture)
-    }
-
-    private func setUpNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-    }
-
-    @objc private func applicationDidEnterBackground() {
-        stopHeadRotation()
-    }
-
     private func fractionComplete(for textField: UITextField) -> Float {
         guard let text = textField.text, let font = textField.font else { return 0 }
         let textFieldWidth = textField.bounds.width - (2 * textFieldHorizontalMargin)
         return min(Float(text.size(withAttributes: [NSAttributedStringKey.font : font]).width / textFieldWidth), 1)
-    }
-
-    @objc private func handleTap() {
-        stopHeadRotation()
     }
 
     private func stopHeadRotation() {
@@ -153,7 +140,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         critterView.stopHeadRotation()
     }
 
-    private func createTextField() -> UITextField {
+    private func createTextField(text: String) -> UITextField {
         let view = UITextField(frame: CGRect(x: 0, y: 0, width: textFieldWidth, height: textFieldHeight))
         view.backgroundColor = .white
         view.layer.cornerRadius = 4.07
@@ -171,35 +158,67 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         view.rightView = UIView(frame: frame)
         view.rightViewMode = .always
 
-        view.font = UIFont.systemFont(ofSize: 14.0)
+        view.font = UIFont(name: "Helvetica", size: 13)
         view.textColor = Colors.text
+
+        let attributes: [NSAttributedStringKey : Any] = [
+            .foregroundColor: Colors.text.withAlphaComponent(0.8),
+            .font : view.font!
+        ]
+
+        view.attributedPlaceholder = NSAttributedString(string: text, attributes: attributes)
 
         return view
     }
 
-    // MARK: - Dev
+    // MARK: - Gestures
 
-    private lazy var activeAnimationSlider = UISlider()
+    private func setUpGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
 
-    private func dev_setUpTestUI() {
+    @objc private func handleTap() {
+        stopHeadRotation()
+    }
+
+    // MARK: - Notifications
+
+    private func setUpNotification() {
+        notificationCenter.addObserver(self, selector: #selector(applicationDidEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+    }
+
+    @objc private func applicationDidEnterBackground() {
+        stopHeadRotation()
+    }
+
+    // MARK: - Debug Mode
+
+    private let isDebugMode = false
+
+    private lazy var dubug_activeAnimationSlider = UISlider()
+
+    private func debug_setUpDebugUI() {
+        guard isDebugMode else { return }
+
         let animateButton = UIButton(type: .system)
         animateButton.setTitle("Activate", for: .normal)
         animateButton.setTitleColor(.white, for: .normal)
-        animateButton.addTarget(self, action: #selector(dev_activeAnimation), for: .touchUpInside)
+        animateButton.addTarget(self, action: #selector(debug_activeAnimation), for: .touchUpInside)
 
         let resetButton = UIButton(type: .system)
         resetButton.setTitle("Neutral", for: .normal)
         resetButton.setTitleColor(.white, for: .normal)
-        resetButton.addTarget(self, action: #selector(dev_neutralAnimation), for: .touchUpInside)
+        resetButton.addTarget(self, action: #selector(debug_neutralAnimation), for: .touchUpInside)
 
         let validateButton = UIButton(type: .system)
         validateButton.setTitle("Ecstatic", for: .normal)
         validateButton.setTitleColor(.white, for: .normal)
-        validateButton.addTarget(self, action: #selector(dev_ecstaticAnimation), for: .touchUpInside)
+        validateButton.addTarget(self, action: #selector(debug_ecstaticAnimation), for: .touchUpInside)
 
-        activeAnimationSlider.tintColor = Colors.light
-        activeAnimationSlider.isEnabled = false
-        activeAnimationSlider.addTarget(self, action: #selector(dev_activeAnimationSliderValueChanged(sender:)), for: .valueChanged)
+        dubug_activeAnimationSlider.tintColor = Colors.light
+        dubug_activeAnimationSlider.isEnabled = false
+        dubug_activeAnimationSlider.addTarget(self, action: #selector(debug_activeAnimationSliderValueChanged(sender:)), for: .valueChanged)
 
         let stackView = UIStackView(
             arrangedSubviews:
@@ -207,7 +226,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
                 animateButton,
                 resetButton,
                 validateButton,
-                activeAnimationSlider
+                dubug_activeAnimationSlider
             ]
         )
         stackView.axis = .vertical
@@ -221,21 +240,21 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
-    @objc private func dev_activeAnimation() {
-        critterView.startHeadRotation(startAt: activeAnimationSlider.value)
-        activeAnimationSlider.isEnabled = true
+    @objc private func debug_activeAnimation() {
+        critterView.startHeadRotation(startAt: dubug_activeAnimationSlider.value)
+        dubug_activeAnimationSlider.isEnabled = true
     }
 
-    @objc private func dev_neutralAnimation() {
+    @objc private func debug_neutralAnimation() {
         stopHeadRotation()
-        activeAnimationSlider.isEnabled = false
+        dubug_activeAnimationSlider.isEnabled = false
     }
 
-    @objc private func dev_ecstaticAnimation() {
+    @objc private func debug_ecstaticAnimation() {
         critterView.isEcstatic = !critterView.isEcstatic
     }
 
-    @objc private func dev_activeAnimationSliderValueChanged(sender: UISlider) {
+    @objc private func debug_activeAnimationSliderValueChanged(sender: UISlider) {
         critterView.updateHeadRotation(to: sender.value)
     }
 }

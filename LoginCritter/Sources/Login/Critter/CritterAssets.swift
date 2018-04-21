@@ -18,7 +18,6 @@ extension UIImage {
         static let head = #imageLiteral(resourceName: "Head")
         static let leftArm = #imageLiteral(resourceName: "Arm")
         static let leftEar = #imageLiteral(resourceName: "Ear")
-        static let mouthClosed = #imageLiteral(resourceName: "Mouth-closed")
         static let mouthFull = #imageLiteral(resourceName: "Mouth-full")
         static let mouthHalf = #imageLiteral(resourceName: "Mouth-half")
         static let mouthSmile = #imageLiteral(resourceName: "Mouth-smile")

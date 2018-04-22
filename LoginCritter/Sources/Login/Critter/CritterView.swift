@@ -11,7 +11,7 @@ import UIKit
 final class CritterView: UIView {
 
     var isActiveStartAnimating: Bool {
-        guard let activeStartAnimation = activeStartAnimation else { return false }
+        guard let activeStartAnimation = activeStartAnimator else { return false }
         return activeStartAnimation.state == .active
     }
 
@@ -21,6 +21,12 @@ final class CritterView: UIView {
             if oldValue != isEcstatic {
                 ecstaticAnimation()
             }
+        }
+    }
+
+    var isShy: Bool = false {
+        didSet {
+            
         }
     }
 
@@ -89,13 +95,13 @@ final class CritterView: UIView {
 
     // MARK: - Animation
 
-    private var neutralAnimation: UIViewPropertyAnimator?
-    private var activeStartAnimation: UIViewPropertyAnimator?
-    private var activeEndAnimation: UIViewPropertyAnimator?
+    private var neutralAnimator: UIViewPropertyAnimator?
+    private var activeStartAnimator: UIViewPropertyAnimator?
+    private var activeEndAnimator: UIViewPropertyAnimator?
     private var savedState = [SavedState]()
 
     func startHeadRotation(startAt fractionComplete: Float) {
-        let shouldSaveCurrentState = activeEndAnimation != nil
+        let shouldSaveCurrentState = activeEndAnimator != nil
 
         stopAllAnimations()
 
@@ -103,36 +109,36 @@ final class CritterView: UIView {
             saveCurrentState()
         }
 
-        activeStartAnimation = UIViewPropertyAnimator(
+        activeStartAnimator = UIViewPropertyAnimator(
             duration: 0.2,
             curve: .easeIn,
             animations: { self.savedState.isEmpty ? self.focusCritterInitialState() : self.restoreToSavedState() })
 
-        activeEndAnimation = UIViewPropertyAnimator(
+        activeEndAnimator = UIViewPropertyAnimator(
             duration: 0.2,
             curve: .linear,
             animations: focusCritterFinalState
         )
 
-        activeStartAnimation?.addCompletion {
+        activeStartAnimator?.addCompletion {
             [weak self] _ in
             self?.focusCritterInitialState()
-            self?.activeEndAnimation?.fractionComplete = CGFloat(fractionComplete)
+            self?.activeEndAnimator?.fractionComplete = CGFloat(fractionComplete)
         }
 
-        activeStartAnimation?.startAnimation()
+        activeStartAnimator?.startAnimation()
     }
 
     func updateHeadRotation(to fractionComplete: Float) {
-        activeEndAnimation?.fractionComplete = CGFloat(fractionComplete)
+        activeEndAnimator?.fractionComplete = CGFloat(fractionComplete)
     }
 
     func stopHeadRotation() {
-        if let neutralAnimation = neutralAnimation, neutralAnimation.state == .inactive {
+        if let neutralAnimation = neutralAnimator, neutralAnimation.state == .inactive {
             return
         }
 
-        let shouldSaveCurrentState = activeEndAnimation != nil
+        let shouldSaveCurrentState = activeEndAnimator != nil
 
         stopAllAnimations()
 
@@ -140,11 +146,11 @@ final class CritterView: UIView {
             saveCurrentState()
         }
 
-        neutralAnimation = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
+        neutralAnimator = UIViewPropertyAnimator(duration: 0.1725, curve: .easeIn) {
             self.parts.applyInactiveState()
         }
 
-        neutralAnimation?.startAnimation()
+        neutralAnimator?.startAnimation()
     }
 
     private func ecstaticAnimation() {
@@ -164,24 +170,24 @@ final class CritterView: UIView {
         rightEye.layer.add(crossFade, forKey: eyeAnimationKey)
 
         let dimension = isEcstatic ? 12.7 : 11.7
-        let validateAnimation = UIViewPropertyAnimator(duration: duration, curve: .easeIn) {
+        let ecstaticAnimator = UIViewPropertyAnimator(duration: duration, curve: .easeIn) {
             self.leftEye.layer.bounds = CGRect(x: 0, y: 0, width: dimension, height: dimension)
             self.rightEye.layer.bounds = CGRect(x: 0, y: 0, width: dimension, height: dimension)
             self.mouth.applyEcstaticState()
         }
 
-        validateAnimation.startAnimation()
+        ecstaticAnimator.startAnimation()
     }
 
     private func stopAllAnimations() {
-        neutralAnimation?.stopAnimation(true)
-        neutralAnimation = nil
+        neutralAnimator?.stopAnimation(true)
+        neutralAnimator = nil
 
-        activeStartAnimation?.stopAnimation(true)
-        activeStartAnimation = nil
+        activeStartAnimator?.stopAnimation(true)
+        activeStartAnimator = nil
 
-        activeEndAnimation?.stopAnimation(true)
-        activeEndAnimation = nil
+        activeEndAnimator?.stopAnimation(true)
+        activeEndAnimator = nil
     }
 
     private func focusCritterInitialState() {

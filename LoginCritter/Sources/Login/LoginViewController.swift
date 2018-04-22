@@ -48,12 +48,17 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        let deadlineTime = DispatchTime.now() + .milliseconds(100)
+
         if textField == emailTextField {
-            let deadlineTime = DispatchTime.now() + .milliseconds(100)
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
                 let fractionComplete = self.fractionComplete(for: textField)
                 self.critterView.startHeadRotation(startAt: fractionComplete)
             }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
+            self.critterView.isShy = textField == self.passwordTextField
         }
     }
 
@@ -138,6 +143,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         critterView.stopHeadRotation()
+        critterView.isShy = false
     }
 
     private func createTextField(text: String) -> UITextField {

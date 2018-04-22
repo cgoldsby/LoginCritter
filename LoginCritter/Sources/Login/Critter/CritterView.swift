@@ -26,7 +26,11 @@ final class CritterView: UIView {
 
     var isShy: Bool = false {
         didSet {
-            
+            leftArm.isShy = isShy
+            rightArm.isShy = isShy
+            if oldValue != isShy {
+                shyAnimation()
+            }
         }
     }
 
@@ -179,6 +183,15 @@ final class CritterView: UIView {
         ecstaticAnimator.startAnimation()
     }
 
+    private func shyAnimation() {
+        let shyAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
+            self.leftArm.applyShyState()
+            self.rightArm.applyShyState()
+        }
+
+        shyAnimator.startAnimation()
+    }
+
     private func stopAllAnimations() {
         neutralAnimator?.stopAnimation(true)
         neutralAnimator = nil
@@ -197,12 +210,12 @@ final class CritterView: UIView {
     private func focusCritterFinalState() {
         parts.applyActiveEndState()
     }
-
-    func saveCurrentState() {
+    
+    private func saveCurrentState() {
         savedState = parts.map { $0.currentState() }
     }
 
-    func restoreToSavedState() {
+    private func restoreToSavedState() {
         savedState.forEach { $0() }
     }
 }

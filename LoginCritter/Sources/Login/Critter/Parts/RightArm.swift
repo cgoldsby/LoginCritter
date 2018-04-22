@@ -10,6 +10,8 @@ import UIKit
 
 final class RightArm: UIImageView {
 
+    var isShy = false
+
     convenience init() {
         self.init(image: UIImage.Critter.rightArm)
     }
@@ -19,6 +21,17 @@ final class RightArm: UIImageView {
         guard let superview = superview else { return }
 
         let originY = superview.bounds.maxY
-        frame = CGRect(x: 92.6, y: originY, width: 42.3, height: 82.6)
+        frame = CGRect(x: 92.6, y: originY, width: 42.3, height: 93.2)
+    }
+
+    func applyShyState() {
+        if isShy {
+            layer.transform = CATransform3D
+                .identity
+                .translate(.y, by: -82.6)
+        }
+        else {
+            layer.transform = .identity
+        }
     }
 }

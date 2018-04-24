@@ -1,5 +1,5 @@
 # Login Critter
-#### An animated avatar which responds to user input events
+#### An animated avatar that responds to text fields interactions 🐻
 
 ![Demo gif](/assets/demo.gif)
 

@@ -3,7 +3,7 @@
 
 ![Demo gif](/assets/demo.gif)
 
-Inspired by the amazing work done by other designers and developers, I wanted to create an animated "Login avatar" in Swift.
+Inspired by the amazing work done by other designers and developers, specifically Darin Senneff [amazing work](https://dribbble.com/shots/4249163-Animated-login-form-avatar?utm_campaign=iOS%2BDev%2BWeekly&utm_medium=web&utm_source=iOS%2BDev%2BWeekly%2BIssue%2B349). 🎩 I wanted to try and create a similar animated "Login avatar" in Swift.
 
 The Login Critter uses several `UIPropertyAnimator`. The head rotation is controlled by updating the `fractionComplete` property for an animator. As the user types, the animator's fraction complete is calculated by `text width / text field width`.
 

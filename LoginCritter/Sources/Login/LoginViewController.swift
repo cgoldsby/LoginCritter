@@ -68,6 +68,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             passwordTextField.resignFirstResponder()
+            critterView.isShy = false
         }
         return true
     }

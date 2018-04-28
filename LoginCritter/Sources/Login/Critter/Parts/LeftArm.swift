@@ -14,6 +14,7 @@ final class LeftArm: UIImageView {
 
     convenience init() {
         self.init(image: UIImage.Critter.leftArm)
+        layer.zPosition = 30
     }
 
     override func didMoveToSuperview() {

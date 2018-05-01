@@ -70,7 +70,7 @@ final class CritterView: UIView {
     // MARK: - Private
 
     private func setUpView() {
-        backgroundColor = Colors.light
+        backgroundColor = UIColor.light
         setUpMask()
 
         addSubview(body)

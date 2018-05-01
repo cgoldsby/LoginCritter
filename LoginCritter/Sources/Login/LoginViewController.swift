@@ -93,7 +93,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Private
 
     private func setUpView() {
-        view.backgroundColor = Colors.dark
+        view.backgroundColor = UIColor.dark
 
         view.addSubview(critterView)
         setUpCritterViewConstraints()
@@ -151,7 +151,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         let view = UITextField(frame: CGRect(x: 0, y: 0, width: textFieldWidth, height: textFieldHeight))
         view.backgroundColor = .white
         view.layer.cornerRadius = 4.07
-        view.tintColor = Colors.dark
+        view.tintColor = UIColor.dark
         view.autocorrectionType = .no
         view.autocapitalizationType = .none
         view.spellCheckingType = .no
@@ -166,10 +166,10 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         view.rightViewMode = .always
 
         view.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
-        view.textColor = Colors.text
+        view.textColor = UIColor.text
 
         let attributes: [NSAttributedStringKey : Any] = [
-            .foregroundColor: Colors.text.withAlphaComponent(0.8),
+            .foregroundColor: UIColor.text.withAlphaComponent(0.8),
             .font : view.font!
         ]
 
@@ -223,7 +223,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         validateButton.setTitleColor(.white, for: .normal)
         validateButton.addTarget(self, action: #selector(debug_ecstaticAnimation), for: .touchUpInside)
 
-        dubug_activeAnimationSlider.tintColor = Colors.light
+        dubug_activeAnimationSlider.tintColor = UIColor.light
         dubug_activeAnimationSlider.isEnabled = false
         dubug_activeAnimationSlider.addTarget(self, action: #selector(debug_activeAnimationSliderValueChanged(sender:)), for: .valueChanged)
 

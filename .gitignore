@@ -1,3 +1,5 @@
+.DS_Store
+
 xcuserdata/
 xcshareddata/
 fastlane/report.xml

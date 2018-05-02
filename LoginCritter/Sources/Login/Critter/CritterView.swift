@@ -183,6 +183,8 @@ final class CritterView: UIView {
         ecstaticAnimator.startAnimation()
     }
 
+    // MARK: - Internal Animations for CritterView
+    
     private func shyAnimation() {
         let shyAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {
             self.leftArm.applyShyState()
@@ -205,6 +207,7 @@ final class CritterView: UIView {
 
     private func focusCritterInitialState() {
         parts.applyActiveStartState()
+        
     }
 
     private func focusCritterFinalState() {

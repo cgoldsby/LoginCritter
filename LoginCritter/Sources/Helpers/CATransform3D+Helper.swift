@@ -17,6 +17,8 @@ extension CATransform3D {
     static var identity: CATransform3D {
         return CATransform3DIdentity
     }
+    
+    // MARK: - Rotate and Translation 
 
     func rotate(_ axis: Axis, by degree: Degree) -> CATransform3D {
         let radians = degree.radians

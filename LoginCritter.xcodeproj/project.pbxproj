@@ -27,7 +27,7 @@
 		EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760D206E6F020018CD99 /* LoginViewController.swift */; };
 		EBBA7613206E6F020018CD99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBBA7612206E6F020018CD99 /* Assets.xcassets */; };
 		EBBA7616206E6F020018CD99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBA7614206E6F020018CD99 /* LaunchScreen.storyboard */; };
-		EBBA7620206E6FDE0018CD99 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA761F206E6FDE0018CD99 /* Colors.swift */; };
+		EBBA7620206E6FDE0018CD99 /* UIColors+ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA761F206E6FDE0018CD99 /* UIColors+ColorPallete.swift */; };
 		EBBA7624206E73480018CD99 /* CritterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA7623206E73480018CD99 /* CritterView.swift */; };
 		EBDC9183206E7F8C00F95959 /* CritterAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDC9182206E7F8C00F95959 /* CritterAssets.swift */; };
 /* End PBXBuildFile section */
@@ -55,7 +55,7 @@
 		EBBA7612206E6F020018CD99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBBA7615206E6F020018CD99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBBA7617206E6F020018CD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EBBA761F206E6FDE0018CD99 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EBBA761F206E6FDE0018CD99 /* UIColors+ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColors+ColorPallete.swift"; sourceTree = "<group>"; };
 		EBBA7623206E73480018CD99 /* CritterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CritterView.swift; sourceTree = "<group>"; };
 		EBDC9182206E7F8C00F95959 /* CritterAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CritterAssets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,8 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				EB7A27342073A4EE00C38FFF /* CATransform3D+Helper.swift */,
-				EBBA761F206E6FDE0018CD99 /* Colors.swift */,
 				EB26A6812083A3F900E5D440 /* Degree.swift */,
+				EBBA761F206E6FDE0018CD99 /* UIColors+ColorPallete.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -240,7 +240,7 @@
 				EB26A6802083805D00E5D440 /* CritterAnimatable.swift in Sources */,
 				EB26A6822083A3F900E5D440 /* Degree.swift in Sources */,
 				EBBA7624206E73480018CD99 /* CritterView.swift in Sources */,
-				EBBA7620206E6FDE0018CD99 /* Colors.swift in Sources */,
+				EBBA7620206E6FDE0018CD99 /* UIColors+ColorPallete.swift in Sources */,
 				EB26A6902083B82700E5D440 /* RightEye.swift in Sources */,
 				EB26A67E2083801100E5D440 /* Body.swift in Sources */,
 				EB26A6922083B9EF00E5D440 /* Muzzle.swift in Sources */,

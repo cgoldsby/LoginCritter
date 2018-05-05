@@ -168,6 +168,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func resignPasswordAsFirstResponder() {
+        critterView.isPeeking = false
         critterView.isShy = false
         showHidePasswordButton.isHidden = true
         showHidePasswordButton.isSelected = false
@@ -221,6 +222,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc private func togglePasswordVisibility(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         passwordTextField.isSecureTextEntry = !sender.isSelected
+        critterView.isPeeking = sender.isSelected
 
         if let textRange = passwordTextField.textRange(from: passwordTextField.beginningOfDocument, to: passwordTextField.endOfDocument), let password = passwordTextField.text { // 🎩✨ Magic to fix cursor position
             passwordTextField.replace(textRange, withText: password)

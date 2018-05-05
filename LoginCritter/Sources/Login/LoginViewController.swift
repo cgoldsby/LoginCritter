@@ -73,6 +73,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
                 let fractionComplete = self.fractionComplete(for: textField)
                 self.critterView.startHeadRotation(startAt: fractionComplete)
             }
+            passwordTextField.isSecureTextEntry = true
+            showHidePasswordButton.isSelected = false
         }
 
         DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts

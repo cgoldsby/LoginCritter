@@ -8,12 +8,14 @@
 
 import UIKit
 
+private let buttonFrame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
 private let buttonHeight = textFieldHeight
 private let buttonHorizontalMargin = textFieldHorizontalMargin / 2
 private let buttonImageDimension: CGFloat = 18
 private let buttonVerticalMargin = (buttonHeight - buttonImageDimension) / 2
 private let buttonWidth = (textFieldHorizontalMargin / 2) + buttonImageDimension
 private let critterViewDimension: CGFloat = 160
+private let critterViewFrame = CGRect(x: 0, y: 0, width: critterViewDimension, height: critterViewDimension)
 private let critterViewTopMargin: CGFloat = 70
 private let textFieldHeight: CGFloat = 37
 private let textFieldHorizontalMargin: CGFloat = 16.5
@@ -23,7 +25,7 @@ private let textFieldWidth: CGFloat = 206
 
 final class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    private let critterView = CritterView(frame: CGRect(x: 0, y: 0, width: critterViewDimension, height: critterViewDimension))
+    private let critterView = CritterView(frame: critterViewFrame)
 
     private lazy var emailTextField: UITextField = {
         let textField = createTextField(text: "Email")
@@ -44,7 +46,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     private lazy var showHidePasswordButton: UIButton = {
         let button = UIButton(type: .custom)
         button.imageEdgeInsets = UIEdgeInsets(top: buttonVerticalMargin, left: 0, bottom: buttonVerticalMargin, right: buttonHorizontalMargin)
-        button.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
+        button.frame = buttonFrame
         button.tintColor = .text
         button.setImage(#imageLiteral(resourceName: "Password-show"), for: .normal)
         button.setImage(#imageLiteral(resourceName: "Password-hide"), for: .selected)
@@ -90,7 +92,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             passwordTextField.resignFirstResponder()
-            resignPasswordAsFirstResponder()
+            passwordDidResignAsFirstResponder()
         }
         return true
     }
@@ -166,10 +168,10 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         critterView.stopHeadRotation()
-        resignPasswordAsFirstResponder()
+        passwordDidResignAsFirstResponder()
     }
 
-    private func resignPasswordAsFirstResponder() {
+    private func passwordDidResignAsFirstResponder() {
         critterView.isPeeking = false
         critterView.isShy = false
         showHidePasswordButton.isHidden = true
@@ -222,11 +224,13 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
 
     @objc private func togglePasswordVisibility(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        passwordTextField.isSecureTextEntry = !sender.isSelected
-        critterView.isPeeking = sender.isSelected
+        let isPasswordVisible = !sender.isSelected
+        sender.isSelected = isPasswordVisible
+        passwordTextField.isSecureTextEntry = !isPasswordVisible
+        critterView.isPeeking = isPasswordVisible
 
-        if let textRange = passwordTextField.textRange(from: passwordTextField.beginningOfDocument, to: passwordTextField.endOfDocument), let password = passwordTextField.text { // 🎩✨ Magic to fix cursor position
+        // 🎩✨ Magic to fix cursor position when toggling password visibility
+        if let textRange = passwordTextField.textRange(from: passwordTextField.beginningOfDocument, to: passwordTextField.endOfDocument), let password = passwordTextField.text {
             passwordTextField.replace(textRange, withText: password)
         }
     }

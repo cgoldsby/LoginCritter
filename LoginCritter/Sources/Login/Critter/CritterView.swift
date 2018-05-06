@@ -195,7 +195,7 @@ final class CritterView: UIView {
 
     private func togglePeekingState() {
         let animation = isPeeking ? parts.applyPeekState : parts.applyUnPeekState
-        let peekAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn, animations: animation)
+        let peekAnimator = UIViewPropertyAnimator(duration: 0.15, curve: .easeIn, animations: animation)
         peekAnimator.startAnimation()
     }
     

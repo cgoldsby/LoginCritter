@@ -74,16 +74,15 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
                 let fractionComplete = self.fractionComplete(for: textField)
                 self.critterView.startHeadRotation(startAt: fractionComplete)
+                self.passwordDidResignAsFirstResponder()
             }
-            passwordTextField.isSecureTextEntry = true
-            showHidePasswordButton.isSelected = false
         }
-
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
-            self.critterView.isShy = textField == self.passwordTextField
+        else if textField == passwordTextField {
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) { // 🎩✨ Magic to ensure animation starts
+                self.critterView.isShy = true
+                self.showHidePasswordButton.isHidden = false
+            }
         }
-
-        showHidePasswordButton.isHidden = textField != self.passwordTextField
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

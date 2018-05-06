@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LeftArm: UIImageView {
+final class LeftArm: UIImageView, CritterAnimatable {
 
     var isShy = false
 
@@ -33,6 +33,21 @@ final class LeftArm: UIImageView {
         }
         else {
             layer.transform = .identity
+        }
+    }
+
+    func applyPeekState() {
+        layer.transform = CATransform3D
+            .identity
+            .translate(.y, by: -70.6)
+    }
+
+    func applyUnPeekState() {
+        if isShy {
+            applyShyState()
+        }
+        else {
+            applyInactiveState()
         }
     }
 }

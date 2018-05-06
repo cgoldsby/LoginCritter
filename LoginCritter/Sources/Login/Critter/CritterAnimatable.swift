@@ -15,6 +15,8 @@ protocol CritterAnimatable {
     func applyActiveStartState()
     func applyActiveEndState()
     func applyInactiveState()
+    func applyPeekState()
+    func applyUnPeekState()
 }
 
 extension CritterAnimatable where Self: UIView {
@@ -25,10 +27,18 @@ extension CritterAnimatable where Self: UIView {
             self.layer.transform = currentState
         }
     }
+
+    func applyActiveStartState() { }
+
+    func applyActiveEndState() { }
     
     func applyInactiveState() {
         layer.transform = .identity
     }
+
+    func applyPeekState() { }
+
+    func applyUnPeekState() { }
 }
 
 extension Sequence where Iterator.Element == CritterAnimatable {
@@ -43,5 +53,13 @@ extension Sequence where Iterator.Element == CritterAnimatable {
 
     func applyInactiveState() {
         forEach { $0.applyInactiveState() }
+    }
+
+    func applyPeekState() {
+        forEach { $0.applyPeekState() }
+    }
+
+    func applyUnPeekState() {
+        forEach { $0.applyUnPeekState() }
     }
 }

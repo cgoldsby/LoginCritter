@@ -75,4 +75,17 @@ final class Mouth: UIImageView, CritterAnimatable {
             layer.bounds = CGRect(x: 0, y: 0, width: 30, height: 6.5)
         }
     }
+
+    func applyPeekState() {
+        layer.transform = CATransform3D
+            .identity
+            .translate(.y, by: 2.5)
+        layer.contents = UIImage.Critter.mouthCircle.cgImage
+        layer.bounds = CGRect(x: 0, y: 0, width: 14.3, height: 14.3)
+    }
+
+    func applyUnPeekState() {
+        layer.transform = .identity
+        applyEcstaticState()
+    }
 }

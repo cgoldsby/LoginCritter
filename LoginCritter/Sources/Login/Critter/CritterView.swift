@@ -28,9 +28,15 @@ final class CritterView: UIView {
         didSet {
             leftArm.isShy = isShy
             rightArm.isShy = isShy
-            if oldValue != isShy {
-                shyAnimation()
-            }
+            guard oldValue != isShy else { return }
+            shyAnimation()
+        }
+    }
+
+    var isPeeking: Bool = false {
+        didSet {
+            guard oldValue != isPeeking else { return }
+            togglePeekingState()
         }
     }
 
@@ -59,7 +65,9 @@ final class CritterView: UIView {
                 self.rightEye,
                 self.muzzle,
                 self.nose,
-                self.mouth]
+                self.mouth,
+                self.leftArm,
+                self.rightArm]
     }()
 
     override func didMoveToSuperview() {
@@ -184,6 +192,12 @@ final class CritterView: UIView {
     }
 
     // MARK: - Internal Animations for CritterView
+
+    private func togglePeekingState() {
+        let animation = isPeeking ? parts.applyPeekState : parts.applyUnPeekState
+        let peekAnimator = UIViewPropertyAnimator(duration: 0.15, curve: .easeIn, animations: animation)
+        peekAnimator.startAnimation()
+    }
     
     private func shyAnimation() {
         let shyAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) {

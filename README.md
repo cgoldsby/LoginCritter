@@ -23,11 +23,13 @@ The ecstatic state is unique because it can be used in combination with all othe
 
 The shy state is only used in combination with the neutral state and can be triggered by tapping the password text field.
 
+The peek state is only used in combination with the shy state and can be toggled On or Off using the "show password" button in the password text field.
+
 There is also a "saved" state. The "saved" state is the current active transformation that is stored when returning to the neutral state. For example, if the active state is 50% complete, the avatar is looking straight down, and transitions to the neutral state, then when returning to the active state the avatar will animate to 50% complete instead of 0% complete.
 
-| Neutral                             | Active                            | Ecstatic                              | Shy                         |
-| :----------------------------------:|:---------------------------------:| :------------------------------------:| :--------------------------:|
-| ![Neutral png](/assets/neutral.png) | ![Active png](/assets/active.png) | ![Ecstatic png](/assets/ecstatic.png) | ![Shy png](/assets/shy.png) |
+| Neutral                             | Active                            | Ecstatic                              | Shy                         | Peek                          |
+| :----------------------------------:|:---------------------------------:| :------------------------------------:| :--------------------------:| :----------------------------:|
+| ![Neutral png](/assets/neutral.png) | ![Active png](/assets/active.png) | ![Ecstatic png](/assets/ecstatic.png) | ![Shy png](/assets/shy.png) | ![Peek png](/assets/peek.png) |
 
 The "Parts" transformations for each state begin with it's `identity`, the neutral state, then scale, rotate and/or translate is applied.
 

@@ -160,7 +160,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     private func fractionComplete(for textField: UITextField) -> Float {
         guard let text = textField.text, let font = textField.font else { return 0 }
         let textFieldWidth = textField.bounds.width - (2 * textFieldHorizontalMargin)
-        return min(Float(text.size(withAttributes: [NSAttributedStringKey.font : font]).width / textFieldWidth), 1)
+        return min(Float(text.size(withAttributes: [NSAttributedString.Key.font : font]).width / textFieldWidth), 1)
     }
 
     private func stopHeadRotation() {
@@ -199,7 +199,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         view.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
         view.textColor = .text
 
-        let attributes: [NSAttributedStringKey : Any] = [
+        let attributes: [NSAttributedString.Key : Any] = [
             .foregroundColor: UIColor.disabledText,
             .font : view.font!
         ]
@@ -237,7 +237,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Notifications
 
     private func setUpNotification() {
-        notificationCenter.addObserver(self, selector: #selector(applicationDidEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
 
     @objc private func applicationDidEnterBackground() {

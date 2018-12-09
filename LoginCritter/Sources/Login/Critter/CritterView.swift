@@ -175,7 +175,7 @@ final class CritterView: UIView {
         crossFade.duration = duration
         crossFade.fromValue = isEcstatic ? UIImage.Critter.eye.cgImage : UIImage.Critter.doeEye.cgImage
         crossFade.toValue = isEcstatic ? UIImage.Critter.doeEye.cgImage : UIImage.Critter.eye.cgImage
-        crossFade.fillMode = kCAFillModeForwards
+        crossFade.fillMode = .forwards
         crossFade.isRemovedOnCompletion = false
 
         leftEye.layer.add(crossFade, forKey: eyeAnimationKey)

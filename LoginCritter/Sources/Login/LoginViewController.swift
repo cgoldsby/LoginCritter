@@ -109,7 +109,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         critterView.updateHeadRotation(to: fractionComplete)
 
         if let text = textField.text {
-            critterView.isEcstatic = text.range(of: "@") != nil
+            critterView.isEcstatic = text.contains("@")
         }
     }
 

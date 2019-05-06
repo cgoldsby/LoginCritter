@@ -223,8 +223,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
 
     @objc private func togglePasswordVisibility(_ sender: UIButton) {
-        let isPasswordVisible = !sender.isSelected
-        sender.isSelected = isPasswordVisible
+        sender.isSelected.toggle()
+        let isPasswordVisible = sender.isSelected
         passwordTextField.isSecureTextEntry = !isPasswordVisible
         critterView.isPeeking = isPasswordVisible
 
@@ -303,7 +303,7 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func debug_ecstaticAnimation() {
-        critterView.isEcstatic = !critterView.isEcstatic
+        critterView.isEcstatic.toggle()
     }
 
     @objc private func debug_activeAnimationSliderValueChanged(sender: UISlider) {

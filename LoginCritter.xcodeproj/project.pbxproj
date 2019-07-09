@@ -25,7 +25,7 @@
 		EBADCC47208CA83000CE95C3 /* RightArm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBADCC46208CA83000CE95C3 /* RightArm.swift */; };
 		EBBA760C206E6F020018CD99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760B206E6F020018CD99 /* AppDelegate.swift */; };
 		EBBA760E206E6F020018CD99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA760D206E6F020018CD99 /* LoginViewController.swift */; };
-		EBBA7613206E6F020018CD99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBBA7612206E6F020018CD99 /* Assets.xcassets */; };
+		EBBA7613206E6F020018CD99 /* LoginCritterAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBBA7612206E6F020018CD99 /* LoginCritterAssets.xcassets */; };
 		EBBA7616206E6F020018CD99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBBA7614206E6F020018CD99 /* LaunchScreen.storyboard */; };
 		EBBA7620206E6FDE0018CD99 /* UIColors+ColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA761F206E6FDE0018CD99 /* UIColors+ColorPallete.swift */; };
 		EBBA7624206E73480018CD99 /* CritterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA7623206E73480018CD99 /* CritterView.swift */; };
@@ -52,7 +52,7 @@
 		EBBA7608206E6F020018CD99 /* Login Critter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Login Critter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBA760B206E6F020018CD99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBBA760D206E6F020018CD99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		EBBA7612206E6F020018CD99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EBBA7612206E6F020018CD99 /* LoginCritterAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LoginCritterAssets.xcassets; sourceTree = "<group>"; };
 		EBBA7615206E6F020018CD99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBBA7617206E6F020018CD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBBA761F206E6FDE0018CD99 /* UIColors+ColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColors+ColorPallete.swift"; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		EBBA7621206E71240018CD99 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EBBA7612206E6F020018CD99 /* Assets.xcassets */,
+				EBBA7612206E6F020018CD99 /* LoginCritterAssets.xcassets */,
 				EBBA7617206E6F020018CD99 /* Info.plist */,
 			);
 			path = Resources;
@@ -227,7 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBBA7616206E6F020018CD99 /* LaunchScreen.storyboard in Resources */,
-				EBBA7613206E6F020018CD99 /* Assets.xcassets in Resources */,
+				EBBA7613206E6F020018CD99 /* LoginCritterAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +326,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -379,7 +379,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

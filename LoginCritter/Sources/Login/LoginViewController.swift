@@ -23,8 +23,8 @@ private let textFieldSpacing: CGFloat = 22
 private let textFieldTopMargin: CGFloat = 38.8
 private let textFieldWidth: CGFloat = 206
 
-final class LoginViewController: UIViewController, UITextFieldDelegate {
-
+final public class LoginViewController: UIViewController, UITextFieldDelegate {
+    
     private let critterView = CritterView(frame: critterViewFrame)
 
     private lazy var emailTextField: UITextField = {
@@ -48,8 +48,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         button.imageEdgeInsets = UIEdgeInsets(top: buttonVerticalMargin, left: 0, bottom: buttonVerticalMargin, right: buttonHorizontalMargin)
         button.frame = buttonFrame
         button.tintColor = .text
-        button.setImage(#imageLiteral(resourceName: "Password-show"), for: .normal)
-        button.setImage(#imageLiteral(resourceName: "Password-hide"), for: .selected)
+        button.setImage((#imageLiteral(resourceName: "Password-show") as FrameworkImageLiteral).image, for: .normal)
+        button.setImage((#imageLiteral(resourceName: "Password-hide") as FrameworkImageLiteral).image, for: .selected)
         button.addTarget(self, action: #selector(togglePasswordVisibility(_:)), for: .touchUpInside)
         return button
     }()
@@ -59,15 +59,14 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
     deinit {
         notificationCenter.removeObserver(self)
     }
-
-    override func viewDidLoad() {
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
     }
 
     // MARK: - UITextFieldDelegate
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         let deadlineTime = DispatchTime.now() + .milliseconds(100)
 
         if textField == emailTextField {
@@ -84,8 +83,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
             passwordTextField.becomeFirstResponder()
         }
@@ -95,8 +94,8 @@ final class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == emailTextField {
             critterView.stopHeadRotation()
         }

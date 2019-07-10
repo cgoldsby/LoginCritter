@@ -8,22 +8,30 @@
 
 import UIKit
 
+struct FrameworkImageLiteral: _ExpressibleByImageLiteral {
+    
+    let image: UIImage
+    init(imageLiteralResourceName path: String) {
+        let bundle = Bundle(for: LoginViewController.self)
+        self.image = UIImage(named: path, in: bundle, compatibleWith: nil)!
+    }
+}
 
 extension UIImage {
 
     struct Critter {
-        static let body = #imageLiteral(resourceName: "Body")
-        static let doeEye = #imageLiteral(resourceName: "Eye-doe")
-        static let eye = #imageLiteral(resourceName: "Eye")
-        static let head = #imageLiteral(resourceName: "Head")
-        static let leftArm = #imageLiteral(resourceName: "Arm")
-        static let leftEar = #imageLiteral(resourceName: "Ear")
-        static let mouthCircle = #imageLiteral(resourceName: "Mouth-circle")
-        static let mouthFull = #imageLiteral(resourceName: "Mouth-full")
-        static let mouthHalf = #imageLiteral(resourceName: "Mouth-half")
-        static let mouthSmile = #imageLiteral(resourceName: "Mouth-smile")
-        static let muzzle = #imageLiteral(resourceName: "Muzzle")
-        static let nose = #imageLiteral(resourceName: "Nose")
+        static let body = (#imageLiteral(resourceName: "Body") as FrameworkImageLiteral).image
+        static let doeEye = (#imageLiteral(resourceName: "Eye-doe") as FrameworkImageLiteral).image
+        static let eye = (#imageLiteral(resourceName: "Eye") as FrameworkImageLiteral).image
+        static let head = (#imageLiteral(resourceName: "Head") as FrameworkImageLiteral).image
+        static let leftArm = (#imageLiteral(resourceName: "Arm") as FrameworkImageLiteral).image
+        static let leftEar = (#imageLiteral(resourceName: "Ear") as FrameworkImageLiteral).image
+        static let mouthCircle = (#imageLiteral(resourceName: "Mouth-circle") as FrameworkImageLiteral).image
+        static let mouthFull = (#imageLiteral(resourceName: "Mouth-full") as FrameworkImageLiteral).image
+        static let mouthHalf = (#imageLiteral(resourceName: "Mouth-half") as FrameworkImageLiteral).image
+        static let mouthSmile = (#imageLiteral(resourceName: "Mouth-smile") as FrameworkImageLiteral).image
+        static let muzzle = (#imageLiteral(resourceName: "Muzzle") as FrameworkImageLiteral).image
+        static let nose = (#imageLiteral(resourceName: "Nose") as FrameworkImageLiteral).image
         static let rightEar: UIImage = {
             let leftEar = UIImage.Critter.leftEar
             return UIImage(
